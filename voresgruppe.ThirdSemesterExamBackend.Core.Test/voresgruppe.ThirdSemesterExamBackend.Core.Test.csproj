@@ -24,8 +24,4 @@
       <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Core\voresgruppe.ThirdSemesterExamBackend.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="IServices" />
-    </ItemGroup>
-
 </Project>
