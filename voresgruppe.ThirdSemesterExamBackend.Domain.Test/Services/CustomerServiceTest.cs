@@ -20,7 +20,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         }
 
         [Fact]
-        public void CustomerService_WithNullCustomerRepository_ThrowsInvalidDataExeption()
+        public void CustomerService_WithNullCustomerRepository_ThrowsInvalidDataException()
         {
             Assert.Throws<InvalidDataException>(() => new CustomerService(null));
         }
