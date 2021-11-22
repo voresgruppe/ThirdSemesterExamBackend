@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Core\voresgruppe.ThirdSemesterExamBackend.Core.csproj" />
+      <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Domain\voresgruppe.ThirdSemesterExamBackend.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
