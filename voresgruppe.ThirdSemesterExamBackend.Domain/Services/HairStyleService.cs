@@ -11,16 +11,13 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         private IHairStyleRepository _hairStyleRepository;
         public HairStyleService(IHairStyleRepository hairStyleRepository)
         {
-            if (hairStyleRepository == null)
-            {
-                throw new InvalidDataException("Repository cannot be null");
-            }
-            _hairStyleRepository = hairStyleRepository;
+            _hairStyleRepository = hairStyleRepository ?? throw new InvalidDataException("Repository cannot be null");
         }
 
         public List<HairStyle> GetHairstyles()
         {
-            throw new System.NotImplementedException();
+            
+            return _hairStyleRepository.FindAll();
         }
     }
 }
