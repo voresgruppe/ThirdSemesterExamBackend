@@ -41,10 +41,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
             
             
             //Setting up dependency injection
+                //HairStyle
             services.AddScoped<IHairStyleRepository, HairstyleRepository>();
             services.AddScoped<IHairStyleService, HairStyleService>();
+                //Customer
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
             
-            //Setting uo DB info
+            //Setting up DB info
             services.AddDbContext<MainDbContext>(
                 options =>
                 {
