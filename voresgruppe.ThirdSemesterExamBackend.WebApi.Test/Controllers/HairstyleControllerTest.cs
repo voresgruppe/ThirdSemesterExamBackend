@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
+using voresgruppe.ThirdSemesterExamBackend.Core.IServices;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers;
 using Xunit;
@@ -11,16 +14,36 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
     public class HairstyleControllerTest
     {
         private readonly HairStyleController _controller;
+        private readonly Mock<IHairStyleService> _service;
 
         public HairstyleControllerTest()
         {
-            _controller = new HairStyleController();
+            _service = new Mock<IHairStyleService>();
+            _controller = new HairStyleController(_service.Object);
         }
+
+        #region Controller
+        
 
         [Fact]
         public void HairstyleController_IsOfTypeControllerBase()
         {
            Assert.IsAssignableFrom<ControllerBase>(_controller);
+        }
+
+        [Fact]
+        public void HairStyleController_withNullService_ThrowsInvalidDataException()
+        {
+            Assert.Throws<InvalidDataException>(
+                () => new HairStyleController(null));
+        }
+
+        [Fact]
+        public void HairStyleController_withNullService_ThrowsInvalidDataException_WithMessage()
+        {
+            var exception = Assert.Throws<InvalidDataException>(
+                () => new HairStyleController(null));
+            Assert.Equal("hairStyleService Cannot be null", exception.Message);
         }
 
         [Fact]
@@ -54,13 +77,18 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         }
 
         [Fact]
-        public void ProductController_HasGetAllMethod_ReturnsListOfHairstylesInActionResult()
+        public void HairStyleController_HasGetAllMethod_ReturnsListOfHairstylesInActionResult()
         {
             var method = typeof(HairStyleController)
                 .GetMethods().FirstOrDefault(m => "GetAll".Equals(m.Name));
             Assert.Equal(typeof(ActionResult<List<HairStyle>>).FullName, method.ReturnType.FullName);
         }
+        
+        #endregion
 
+        #region GetAll Method
+        
+        
         [Fact]
         public void GetAll_WithNoParams_HasGetHttpAttribute()
         {
@@ -70,5 +98,15 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
                 .FirstOrDefault(ca => ca.AttributeType.Name == "HttpGetAttribute");
             Assert.NotNull(attr);
         }
+
+        [Fact]
+        public void GetAll_CallsServicesGetHairStyles_ExactlyOnce()
+        {
+            _controller.GetAll();
+            
+            _service.Verify(s=> s.GetHairstyles(), Times.Once);
+        }
+        
+        #endregion
     }
 }
