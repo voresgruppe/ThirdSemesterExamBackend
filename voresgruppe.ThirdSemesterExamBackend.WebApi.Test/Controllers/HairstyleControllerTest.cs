@@ -76,6 +76,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
             Assert.Equal("api/[controller]", attribute.Template);
         }
 
+       
+        
+        #endregion
+
+        #region GetAll Method
+        
         [Fact]
         public void HairStyleController_HasGetAllMethod_ReturnsListOfHairstylesInActionResult()
         {
@@ -83,11 +89,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
                 .GetMethods().FirstOrDefault(m => "GetAll".Equals(m.Name));
             Assert.Equal(typeof(ActionResult<List<HairStyle>>).FullName, method.ReturnType.FullName);
         }
-        
-        #endregion
-
-        #region GetAll Method
-        
         
         [Fact]
         public void GetAll_WithNoParams_HasGetHttpAttribute()
@@ -105,6 +106,36 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
             _controller.GetAll();
             
             _service.Verify(s=> s.GetHairstyles(), Times.Once);
+        }
+        
+        #endregion
+        
+        #region GetById Method
+        
+        [Fact]
+        public void HairStyleController_HasGetByIdMethod_ReturnsHairstyleInActionResult()
+        {
+            var method = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => "GetById".Equals(m.Name));
+            Assert.Equal(typeof(ActionResult<HairStyle>).FullName, method.ReturnType.FullName);
+        }
+        
+        [Fact]
+        public void GetById_HasGetHttpAttribute()
+        {
+            var methodInfo = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => m.Name == "GetById");
+            var attr = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpGetAttribute");
+            Assert.NotNull(attr);
+        }
+
+        [Fact]
+        public void GetById_CallsServicesGetHairStyleByID_ExactlyOnce()
+        {
+            _controller.GetById(1);
+            
+            _service.Verify(s=> s.GetHairstyleByID(1), Times.Once);
         }
         
         #endregion

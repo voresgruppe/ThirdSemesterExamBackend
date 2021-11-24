@@ -31,5 +31,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _hairstyleService.GetHairstyles();
         }
+        
+        [HttpGet("{id}")]
+        public ActionResult<HairStyle> GetById(int id)
+        {
+            return _hairstyleService.GetHairstyleByID(id);
+        }
     }
 }
