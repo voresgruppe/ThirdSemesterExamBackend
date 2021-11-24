@@ -6,5 +6,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
     public interface IHairStyleRepository
     {
         public List<HairStyle> FindAll();
+        public HairStyle ReadById(int expectedId);
     }
 }

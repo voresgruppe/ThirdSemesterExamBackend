@@ -32,6 +32,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
             };
         }
 
+        #region HairStyleService
+
+        
+
+        
+
         [Fact]
         public void HairStyleService_IsIHairStyleService()
         {
@@ -50,6 +56,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
             var exception = Assert.Throws<InvalidDataException>(() => new HairStyleService(null));
             Assert.Equal("Repository cannot be null", exception.Message);
         }
+        
+        #endregion
+
+        #region GetHairstyles
 
         [Fact]
         public void GetHairStyles_CallsRepositoryFindAll_ExactlyOnce()
@@ -67,5 +77,34 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
             var actual = _service.GetHairstyles();
             Assert.Equal(_expected, actual);
         }
+
+        #endregion
+
+        #region GetHairstyleByID
+
+        [Fact]
+        public void GetHairStyleByID_CallsRepositoryReadByID_ExactlyOnce()
+        {
+            var fakeProduct = new HairStyle {Id = 1};
+            _mock.Setup(r => r.ReadById(1))
+                .Returns(fakeProduct);
+            
+            _service.GetHairstyleByID(1);
+            _mock.Verify(r =>r.ReadById(1), Times.Once);
+        }
+
+        [Fact]
+        public void GetHairstyleByID_returnsCorrectHairstyle()
+        {
+            var expected  = new HairStyle {Id = 3, Name = "gryde", EstimatedTime = 10};
+            _mock.Setup(r => r.ReadById(1))
+                .Returns(expected);
+
+            var actual = _service.GetHairstyleByID(1);
+            Assert.Equal(expected, actual);
+        }
+        #endregion
+
+        
     }
 }
