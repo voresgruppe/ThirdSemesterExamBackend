@@ -96,7 +96,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void GetHairstyleByID_returnsCorrectHairstyle()
         {
-            var expected  = new HairStyle {Id = 3, Name = "gryde", EstimatedTime = 10};
+            var expected  = new HairStyle {Id = 1, Name = "gryde", EstimatedTime = 10};
             _mock.Setup(r => r.ReadById(1))
                 .Returns(expected);
 
