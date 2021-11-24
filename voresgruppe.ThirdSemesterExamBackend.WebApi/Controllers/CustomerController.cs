@@ -14,6 +14,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        
         private readonly ICustomerService _customerService;
 
         public CustomerController(ICustomerService customerService)

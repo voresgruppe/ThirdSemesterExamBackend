@@ -73,7 +73,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Innotech.LegosforLife.WebApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "voresgruppe.ThirdSemesterExamBackend.WebApi"));
                 app.UseCors("Dev-cors");
                 new DbSeeder(context).SeedDevelopment();
             }
