@@ -12,6 +12,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        [HttpGet]
         public ActionResult<List<Customer>> GetAll()
         {
             return null;

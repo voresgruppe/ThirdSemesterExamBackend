@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +16,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
     {
         private readonly MainDbContext _fakeContext;
         private readonly HairstyleRepository _repo;
-        
+
+        #region Repository
 
         public HairstyleRepositoryTest()
         {
@@ -39,17 +39,20 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
                 .Throws<InvalidDataException>(() => new HairstyleRepository(null));
             Assert.Equal("HairstyleRepository need a DBcontext", exception.Message);
         }
+        #endregion
+
+        #region FindAll
 
         [Fact]
         public void FindAll_GetAllHairstyleEntitiesInDBContext_AsAListOfHairstyles()
         {
             var fakeList = new List<HairstyleEntity>()
             {
-                new HairstyleEntity
+                new()
                 {
                     Id = 1, Name = "kort", EstimatedTime = 90
                 },
-                new HairstyleEntity {Id = 2, Name = "langt", EstimatedTime = 30}
+                new() {Id = 2, Name = "langt", EstimatedTime = 30}
             };
             _fakeContext.Set<HairstyleEntity>().AddRange(fakeList);
             _fakeContext.SaveChanges();
@@ -63,6 +66,37 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             var actual = _repo.FindAll();
             Assert.Equal(expected,actual, new Comparer());
         }
+        #endregion
+
+        #region ReadByID
+
+        [Fact]
+        public void ReadByID_returnsCorrectHairStyle_AsHairstyle()
+        {
+            var selectedHairstyle = new HairstyleEntity {Id = 3, Name = "gryde", EstimatedTime = 10};
+            var fakeList = new List<HairstyleEntity>()
+            {
+                new()
+                {
+                    Id = 1, Name = "kort", EstimatedTime = 90
+                },
+                new() {Id = 2, Name = "langt", EstimatedTime = 30},
+            };
+            fakeList.Add(selectedHairstyle);
+            _fakeContext.Set<HairstyleEntity>().AddRange(fakeList);
+            _fakeContext.SaveChanges();
+
+            var expected = new HairStyle
+            {
+                Id = selectedHairstyle.Id, Name = selectedHairstyle.Name,
+                EstimatedTime = selectedHairstyle.EstimatedTime
+            };
+
+            var actual = _repo.ReadById(expected.Id);
+            Assert.Equal(expected, actual, new Comparer());
+        }
+
+        #endregion
         
         public class Comparer : IEqualityComparer<HairStyle>
         {

@@ -29,5 +29,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
                 })
                 .ToList();
         }
+
+        public HairStyle ReadById(int expectedId)
+        {
+            var foundHairstyleEntity = _ctx.Hairstyles.Find(expectedId);
+            return new HairStyle
+            {
+                Id = foundHairstyleEntity.Id, 
+                Name = foundHairstyleEntity.Name,
+                EstimatedTime = foundHairstyleEntity.EstimatedTime
+            };
+        }
     }
 }
