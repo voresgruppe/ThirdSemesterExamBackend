@@ -6,11 +6,11 @@ using Xunit;
 
 namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
 {
-    public class ProductControllerTest
+    public class HairstyleControllerTest
     {
         private readonly HairStyleController _controller;
 
-        public ProductControllerTest()
+        public HairstyleControllerTest()
         {
             _controller = new HairStyleController();
         }
