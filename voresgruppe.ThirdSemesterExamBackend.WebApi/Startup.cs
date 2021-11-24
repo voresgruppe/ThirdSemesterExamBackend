@@ -38,10 +38,13 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 c.SwaggerDoc("v1",
                     new OpenApiInfo() {Title = "voresgruppe.ThirdSemesterExamBackend.WebApi", Version = "v1"});
             });
-
+            
+            
+            //Setting up dependency injection
             services.AddScoped<IHairStyleRepository, HairstyleRepository>();
             services.AddScoped<IHairStyleService, HairStyleService>();
-
+            
+            //Setting uo DB info
             services.AddDbContext<MainDbContext>(
                 options =>
                 {
