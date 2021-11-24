@@ -28,5 +28,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test
         {
             Assert.True(_mock.Hairstyles is DbSet<HairstyleEntity>);
         }
+
+        [Fact]
+        public void DbContext_DbSets_MustHaveDbSetWithCustomerEntity()
+        {
+            Assert.True(_mock.Customer is DbSet<CustomerEntity>);
+        }
     }
 }

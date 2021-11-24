@@ -11,12 +11,25 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
 {
     public class CustomerServiceTest
     {
+        private readonly Mock<ICustomerRepository> _mock;
+        private readonly CustomerService _service;
+        private readonly List<Customer> _expected;
+
+        public CustomerServiceTest()
+        {
+            _mock = new Mock<ICustomerRepository>();
+            _service = new CustomerService(_mock.Object);
+            
+            _expected = new List<Customer>
+            {
+                new Customer {Id = 1, Name = "Joe", Email = "joemåge@gmail.com", PhoneNumber = "10203040"},
+                new Customer {Id = 2, Name = "Mark", Email = "marksoccerberk@facebok.com", PhoneNumber = "66666666"}
+            };
+        }
         [Fact]
         public void CustomerService_IdICustomerService()
         {
-            Mock<ICustomerRepository> mock = new Mock<ICustomerRepository>();
-            CustomerService service = new CustomerService(mock.Object);
-            Assert.True(service is ICustomerService);
+            Assert.True(_service is ICustomerService);
         }
 
         [Fact]
@@ -28,25 +41,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void GetCustomers_CallsCustomerRepositoriesFindAll_ExactlyOnce()
         {
-            Mock<ICustomerRepository> mock = new Mock<ICustomerRepository>();
-            CustomerService service = new CustomerService(mock.Object);
-            service.GetCustomers();
-            mock.Verify(r => r.FindAll(), Times.Once);
+            _service.GetCustomers();
+            _mock.Verify(r => r.FindAll(), Times.Once);
         }
 
         [Fact]
         public void GetCustomers_NoFilter_ReturnsListOfAllCustomers()
         {
-            List<Customer> expected = new List<Customer>
-            {
-                new Customer {Id = 1, Name = "Joe", Email = "joemåge@gmail.com", PhoneNumber = "10203040"},
-                new Customer {Id = 2, Name = "Mark", Email = "marksoccerberk@facebok.com", PhoneNumber = "66666666"}
-            };
-            Mock<ICustomerRepository> mock = new Mock<ICustomerRepository>();
-            mock.Setup(r => r.FindAll())
-                .Returns(expected);
-            CustomerService service = new CustomerService(mock.Object);
-            Assert.Equal(expected,service.GetCustomers());
+            _mock.Setup(r => r.FindAll())
+                .Returns(_expected);
+            Assert.Equal(_expected,_service.GetCustomers());
         }
     }
 }
