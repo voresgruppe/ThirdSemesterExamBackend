@@ -40,5 +40,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
                 EstimatedTime = foundHairstyleEntity.EstimatedTime
             };
         }
+
+        public void DeleteById(int id)
+        {
+            var selectedHairstyle = _ctx.Hairstyles.Find(id);
+            _ctx.Hairstyles.Remove(selectedHairstyle);
+        }
     }
 }

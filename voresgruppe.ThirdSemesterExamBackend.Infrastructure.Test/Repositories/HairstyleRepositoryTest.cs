@@ -97,6 +97,38 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
         }
 
         #endregion
+
+        #region DeleteByID
+        
+        [Fact]
+        public void DeleteById_DeletesCorrectHairstyle()
+        {
+            var selectedHairstyle = new HairstyleEntity {Id = 3, Name = "gryde", EstimatedTime = 10};
+            var fakeList = new List<HairstyleEntity>()
+            {
+                new()
+                {
+                    Id = 1, Name = "kort", EstimatedTime = 90
+                },
+                new() {Id = 2, Name = "langt", EstimatedTime = 30},
+            };
+            fakeList.Add(selectedHairstyle);
+            _fakeContext.Set<HairstyleEntity>().AddRange(fakeList);
+            _fakeContext.SaveChanges();
+
+            var expected = fakeList.Select(he => new HairStyle
+                {
+                    Id = he.Id, Name = he.Name, EstimatedTime = he.EstimatedTime
+                })
+                .ToList();
+            
+            _repo.DeleteById(selectedHairstyle.Id);
+
+            var actual = _repo.FindAll();
+            Assert.Equal(expected,actual, new Comparer());
+        }
+
+        #endregion
         
         public class Comparer : IEqualityComparer<HairStyle>
         {
