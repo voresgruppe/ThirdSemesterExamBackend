@@ -41,10 +41,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             };
         }
 
-        public void DeleteById(int id)
+        public bool DeleteById(int id)
         {
             var selectedHairstyle = _ctx.Hairstyles.Find(id);
             _ctx.Hairstyles.Remove(selectedHairstyle);
+            return true;
         }
     }
 }

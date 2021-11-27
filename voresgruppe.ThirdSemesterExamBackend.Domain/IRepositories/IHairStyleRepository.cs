@@ -8,6 +8,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
         public List<HairStyle> FindAll();
         public HairStyle ReadById(int expectedId);
 
-        public void DeleteById(int id);
+        public bool DeleteById(int id);
     }
 }

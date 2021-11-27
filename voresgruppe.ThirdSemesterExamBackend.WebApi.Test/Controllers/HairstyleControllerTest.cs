@@ -139,5 +139,35 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         }
         
         #endregion
+        
+        #region DeleteById Method
+        
+        [Fact]
+        public void HairStyleController_HasDeleteByIdMethod_ReturnsTrueInActionResult()
+        {
+            var method = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => "DeleteById".Equals(m.Name));
+            Assert.Equal(typeof(ActionResult<bool>).FullName, method.ReturnType.FullName);
+        }
+        
+        [Fact]
+        public void DeleteById_HasHttpDeleteAttribute()
+        {
+            var methodInfo = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => m.Name == "DeleteById");
+            var attr = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpDeleteAttribute");
+            Assert.NotNull(attr);
+        }
+
+        [Fact]
+        public void DeleteById_CallsServicesDeleteHairStyleByID_ExactlyOnce()
+        {
+            _controller.DeleteById(1);
+            
+            _service.Verify(s=> s.DeleteHairstyleById(1), Times.Once);
+        }
+        
+        #endregion
     }
 }

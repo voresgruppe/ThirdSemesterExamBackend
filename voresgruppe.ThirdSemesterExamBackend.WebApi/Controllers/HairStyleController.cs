@@ -37,5 +37,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _hairstyleService.GetHairstyleByID(id);
         }
+
+        [HttpDelete]
+        public ActionResult<bool> DeleteById(int id)
+        {
+            return _hairstyleService.DeleteHairstyleById(id);
+        }
     }
 }

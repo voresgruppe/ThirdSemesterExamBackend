@@ -105,6 +105,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         }
         #endregion
 
+        [Fact]
+        public void DeleteHairstyleById_DeleteValidHairstyle_returnsTrue()
+        {
+            _mock.Setup(r => r.DeleteById(1))
+                .Returns(true);
+            Assert.True(_service.DeleteHairstyleById(1));
+        }
+
         
     }
 }
