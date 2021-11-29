@@ -9,5 +9,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
         public HairStyle ReadById(int expectedId);
 
         public bool DeleteById(int id);
+
+        public HairStyle CreateHairStyle(HairStyle hairStyle);
     }
 }

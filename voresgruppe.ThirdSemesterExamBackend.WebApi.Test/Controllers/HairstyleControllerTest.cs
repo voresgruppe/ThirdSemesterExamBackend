@@ -169,5 +169,36 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         }
         
         #endregion
+        
+        #region Create Method
+        
+        [Fact]
+        public void HairStyleController_HasCreateMethod_ReturnsTrueInActionResult()
+        {
+            var method = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => "Create".Equals(m.Name));
+            Assert.Equal(typeof(ActionResult<HairStyle>).FullName, method.ReturnType.FullName);
+        }
+        
+        [Fact]
+        public void Create_HasHttpPostAttribute()
+        {
+            var methodInfo = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => m.Name == "Create");
+            var attr = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpPostAttribute");
+            Assert.NotNull(attr);
+        }
+
+        [Fact]
+        public void Create_CallsServicesCreate_ExactlyOnce()
+        {
+            HairStyle hairStyle = new HairStyle();
+            _controller.Create(hairStyle);
+            
+            _service.Verify(s=> s.CreateHairstyle(hairStyle), Times.Once);
+        }
+        
+        #endregion
     }
 }

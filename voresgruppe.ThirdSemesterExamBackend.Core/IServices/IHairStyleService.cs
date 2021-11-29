@@ -8,5 +8,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
         List<HairStyle> GetHairstyles();
         HairStyle GetHairstyleByID(int i);
         bool DeleteHairstyleById(int i);
+
+        HairStyle CreateHairstyle(HairStyle hairStyle);
     }
 }

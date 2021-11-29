@@ -29,5 +29,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         {
             return _hairStyleRepository.DeleteById(i);
         }
+
+        public HairStyle CreateHairstyle(HairStyle hairStyle)
+        {
+            return _hairStyleRepository.CreateHairStyle(hairStyle);
+        }
     }
 }

@@ -43,5 +43,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _hairstyleService.DeleteHairstyleById(id);
         }
+        
+        [HttpPost]
+        public ActionResult<HairStyle> Create([FromBody]HairStyle hairStyle)
+        {
+            var createdHairstyle = _hairstyleService.CreateHairstyle(hairStyle);
+            return Created($"https://localhost/api/hairstyles/{createdHairstyle}", createdHairstyle);
+        }
     }
 }

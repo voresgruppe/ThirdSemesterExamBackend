@@ -113,6 +113,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
             Assert.True(_service.DeleteHairstyleById(1));
         }
 
+        [Fact]
+        public void CreateHairstyle_CreatesValidHairstyle()
+        {
+            var expected  = new HairStyle {Id = 1, Name = "gryde", EstimatedTime = 10};
+            _mock.Setup(r => r.CreateHairStyle(expected))
+                .Returns(expected);
+            var actual = _service.CreateHairstyle(expected);
+            Assert.Equal(expected, actual);
+        }
+
         
     }
 }

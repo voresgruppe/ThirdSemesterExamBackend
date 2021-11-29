@@ -129,6 +129,22 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
         }
 
         #endregion
+
+        #region CreateHairstyle
+
+        [Fact]
+        public void createHairstyle_CreatesHairstyle()
+        {
+            HairStyle hairStyle = new HairStyle {Name = "gryde", EstimatedTime = 10};
+            var fakeList = new List<HairStyle>();
+            fakeList.Add(hairStyle);
+
+            _repo.CreateHairStyle(hairStyle);
+            
+            Assert.Equal(fakeList, _repo.FindAll(), new Comparer_ignoreID());
+        }
+
+        #endregion
         
         public class Comparer : IEqualityComparer<HairStyle>
         {
@@ -144,6 +160,23 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             public int GetHashCode(HairStyle obj)
             {
                 return HashCode.Combine(obj.Id, obj.Name, obj.EstimatedTime);
+            }
+        }
+        
+        public class Comparer_ignoreID : IEqualityComparer<HairStyle>
+        {
+            public bool Equals(HairStyle x, HairStyle y)
+            {
+                if (ReferenceEquals(x, y)) return true;
+                if (ReferenceEquals(x, null)) return false;
+                if (ReferenceEquals(y, null)) return false;
+                if (x.GetType() != y.GetType()) return false;
+                return  x.Name == y.Name && x.EstimatedTime == y.EstimatedTime;
+            }
+
+            public int GetHashCode(HairStyle obj)
+            {
+                return HashCode.Combine(obj.Name, obj.EstimatedTime);
             }
         }
     }
