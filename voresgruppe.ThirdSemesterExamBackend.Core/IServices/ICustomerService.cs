@@ -6,5 +6,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
     public interface ICustomerService
     {
         List<Customer> GetCustomers();
+        Customer GetCustomerById(int id);
     }
 }

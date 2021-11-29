@@ -8,6 +8,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
 {
     public class ICustomerServiceTest
     {
+        private readonly Mock<ICustomerService> _mock;
+        private readonly ICustomerService _service;
+        public ICustomerServiceTest()
+        {
+            _mock = new Mock<ICustomerService>();
+            _service = _mock.Object;
+        }
+        
         [Fact]
         public void ICustomerService_IsAvailable()
         {
@@ -18,13 +26,20 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
         [Fact]
         public void GetCustomers_WithNoParam_ReturnsListOfAllCustomers()
         {
-            Mock<ICustomerService> mock = new Mock<ICustomerService>();
             List<Customer> fakeList = new List<Customer>();
-            mock.Setup(s => s.GetCustomers())
+            _mock.Setup(s => s.GetCustomers())
                 .Returns(fakeList);
+            
+            Assert.Equal(fakeList, _service.GetCustomers());
+        }
 
-            ICustomerService service = mock.Object;
-            Assert.Equal(fakeList, service.GetCustomers());
+        [Fact]
+        public void GetCustomerById_ReturnsASingularCustomer()
+        {
+            Customer fakeCustomer = new Customer();
+            fakeCustomer.Id = 1;
+            _mock.Setup(s => s.GetCustomerById(1)).Returns(fakeCustomer);
+            Assert.Equal(fakeCustomer,_service.GetCustomerById(1));
         }
     }
 }

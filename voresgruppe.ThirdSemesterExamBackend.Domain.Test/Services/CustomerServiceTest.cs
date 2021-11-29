@@ -26,6 +26,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
                 new Customer {Id = 2, Name = "Mark", Email = "marksoccerberk@facebok.com", PhoneNumber = "66666666"}
             };
         }
+        
         [Fact]
         public void CustomerService_IdICustomerService()
         {
@@ -37,6 +38,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         {
             Assert.Throws<InvalidDataException>(() => new CustomerService(null));
         }
+
+        #region GetCustomers
 
         [Fact]
         public void GetCustomers_CallsCustomerRepositoriesFindAll_ExactlyOnce()
@@ -52,5 +55,22 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
                 .Returns(_expected);
             Assert.Equal(_expected,_service.GetCustomers());
         }
+
+        #endregion
+
+        #region GetCustomersById
+
+        [Fact]
+        public void GetCustomerById_CallsCustomerRepoFindById_ExactlyOnce()
+        {
+            //_service.GetCustomerById(1);
+            //_mock.Verify(r => r.FindById(1), Times.Once);
+        }
+        
+        
+
+        #endregion
+        
+        
     }
 }

@@ -29,5 +29,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _customerService.GetCustomers();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Customer> GetById(int id)
+        {
+            return _customerService.GetCustomerById(id);
+        }
     }
 }
