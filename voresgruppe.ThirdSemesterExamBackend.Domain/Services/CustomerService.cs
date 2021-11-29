@@ -22,5 +22,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         {
             return _customerRepository.FindAll();
         }
+
+        public Customer GetCustomerById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

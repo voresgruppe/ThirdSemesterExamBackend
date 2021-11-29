@@ -30,5 +30,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
                 PhoneNumber = pe.PhoneNumber
             }).ToList();
         }
+
+        public Customer FindById(int i)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

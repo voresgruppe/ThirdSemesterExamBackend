@@ -111,7 +111,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         #region GetMethod
 
         [Fact]
-        public void GetAll_WithNoParams_HasGetGttpAttribute()
+        public void GetAll_WithNoParams_HasGetHttpAttribute()
         {
             var methodInfo = typeof(CustomerController)
                 .GetMethods()
@@ -127,6 +127,29 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
             _controller.GetAll();
             _service.Verify(s=>s.GetCustomers(),Times.Once);
         }
+
+        #endregion
+
+        #region GetById
+
+        [Fact]
+        public void GetById_HasGetHttpAttribute()
+        {
+            var methodInfo = typeof(CustomerController)
+                .GetMethods()
+                .FirstOrDefault(m => m.Name == "GetById");
+            var attribute = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpGetAttribute");
+            Assert.NotNull(attribute);
+        }
+
+        [Fact]
+        public void GetById_CallsServicesGetCustomerById_Once()
+        {
+            _controller.GetById(1);
+            _service.Verify(s=>s.GetCustomerById(1),Times.Once);
+        }
+        
 
         #endregion
     }
