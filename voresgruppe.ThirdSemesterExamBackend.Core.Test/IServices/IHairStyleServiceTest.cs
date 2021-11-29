@@ -64,5 +64,23 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
             Assert.Equal(hairStyle, service.CreateHairstyle(hairStyle));
 
         }
+        
+        [Fact]
+        public void UpdateHairstyle_updatesHairstyle()
+        {
+            var mock = new Mock<IHairStyleService>();
+            HairStyle hairStyle = new HairStyle
+            {
+                Id = 1,
+                Name = "langt",
+                EstimatedTime = 200,
+            };
+            
+            mock.Setup(s => s.UpdateHairstyle(hairStyle.Id, hairStyle))
+                .Returns(hairStyle);
+            var service = mock.Object;
+            Assert.Equal(hairStyle, service.UpdateHairstyle(hairStyle.Id, hairStyle));
+
+        }
     }
 }

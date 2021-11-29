@@ -56,9 +56,30 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
                 Name = hairStyle.Name,
                 EstimatedTime = hairStyle.EstimatedTime
             };
-           _ctx.Hairstyles.Add(hairstyleEntity);
+           HairstyleEntity entity = _ctx.Hairstyles.Add(hairstyleEntity).Entity;
            _ctx.SaveChanges();
-           return hairStyle;
+           return new HairStyle
+           {
+               Id = entity.Id,
+               Name = entity.Name,
+               EstimatedTime = entity.EstimatedTime
+           };
+        }
+
+        public HairStyle UpdateHairStyle(int oldHairStyleId, HairStyle newHairstyle)
+        {
+            HairstyleEntity oldHairstyle = _ctx.Hairstyles.Find(oldHairStyleId);
+            oldHairstyle.Name = newHairstyle.Name;
+            oldHairstyle.EstimatedTime = newHairstyle.EstimatedTime;
+            
+            HairstyleEntity entity =_ctx.Hairstyles.Update(oldHairstyle).Entity;
+            _ctx.SaveChanges();
+            return new HairStyle
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                EstimatedTime = entity.EstimatedTime
+            };
         }
     }
 }

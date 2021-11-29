@@ -123,6 +123,15 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
             Assert.Equal(expected, actual);
         }
 
-        
+        [Fact]
+        public void UpdatesHairstyle_returnsHairstyle()
+        {
+            var oldHairstyle  = new HairStyle {Id = 1, Name = "gryde", EstimatedTime = 10};
+            var expected  = new HairStyle {Id = 1, Name = "langt", EstimatedTime = 10};
+            _mock.Setup(r => r.UpdateHairStyle(oldHairstyle.Id, expected))
+                .Returns(expected);
+            var actual = _service.UpdateHairstyle(oldHairstyle.Id, expected);
+            Assert.Equal(expected, actual);
+        }
     }
 }

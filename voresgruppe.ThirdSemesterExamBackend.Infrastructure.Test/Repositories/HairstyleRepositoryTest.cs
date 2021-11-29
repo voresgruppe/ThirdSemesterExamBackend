@@ -146,6 +146,28 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
 
         #endregion
         
+        #region UpdateHairstyle
+
+        [Fact]
+        public void updateHairstyle_UpdatesHairstyle()
+        {
+            var fakeList = new List<HairStyle>();
+            
+
+            HairStyle oldHairStyle = _repo.CreateHairStyle(new HairStyle {Name = "gryde", EstimatedTime = 10});
+            HairStyle hairStyleToUpdate = new HairStyle
+                {Id = oldHairStyle.Id, Name = oldHairStyle.Name, EstimatedTime = oldHairStyle.EstimatedTime};
+            
+            hairStyleToUpdate.Name = "langt";
+            fakeList.Add(hairStyleToUpdate);
+            
+            _repo.UpdateHairStyle(oldHairStyle.Id, hairStyleToUpdate);
+            
+            Assert.Equal(fakeList, _repo.FindAll(), new Comparer());
+        }
+
+        #endregion
+        
         public class Comparer : IEqualityComparer<HairStyle>
         {
             public bool Equals(HairStyle x, HairStyle y)

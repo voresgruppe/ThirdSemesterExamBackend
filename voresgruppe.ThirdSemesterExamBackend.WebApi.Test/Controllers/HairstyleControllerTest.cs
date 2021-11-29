@@ -173,7 +173,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         #region Create Method
         
         [Fact]
-        public void HairStyleController_HasCreateMethod_ReturnsTrueInActionResult()
+        public void HairStyleController_HasCreateMethod_ReturnsHairstyleInActionResult()
         {
             var method = typeof(HairStyleController)
                 .GetMethods().FirstOrDefault(m => "Create".Equals(m.Name));
@@ -197,6 +197,37 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
             _controller.Create(hairStyle);
             
             _service.Verify(s=> s.CreateHairstyle(hairStyle), Times.Once);
+        }
+        
+        #endregion
+        
+        #region Update Method
+        
+        [Fact]
+        public void HairStyleController_HasUpdateMethod_ReturnsHairstyleInActionResult()
+        {
+            var method = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => "Update".Equals(m.Name));
+            Assert.Equal(typeof(ActionResult<HairStyle>).FullName, method.ReturnType.FullName);
+        }
+        
+        [Fact]
+        public void Update_HasHttpPutAttribute()
+        {
+            var methodInfo = typeof(HairStyleController)
+                .GetMethods().FirstOrDefault(m => m.Name == "Update");
+            var attr = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpPutAttribute");
+            Assert.NotNull(attr);
+        }
+
+        [Fact]
+        public void Update_CallsServicesUpdate_ExactlyOnce()
+        {
+            HairStyle hairStyle = new HairStyle();
+            _controller.Update(hairStyle.Id, hairStyle);
+            
+            _service.Verify(s=> s.UpdateHairstyle(hairStyle.Id, hairStyle), Times.Once);
         }
         
         #endregion

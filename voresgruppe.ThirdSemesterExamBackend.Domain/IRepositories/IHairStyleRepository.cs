@@ -11,5 +11,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
         public bool DeleteById(int id);
 
         public HairStyle CreateHairStyle(HairStyle hairStyle);
+
+        public HairStyle UpdateHairStyle(int oldHairStyleId, HairStyle newHairstyle);
     }
 }
