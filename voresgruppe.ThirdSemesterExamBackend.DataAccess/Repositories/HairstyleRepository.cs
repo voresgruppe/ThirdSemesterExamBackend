@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
+using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils;
 using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
@@ -39,6 +40,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
         {
             var selectedHairstyle = _ctx.Hairstyles.Find(id);
             _ctx.Hairstyles.Remove(selectedHairstyle);
+            _ctx.SaveChanges();
             return true;
         }
 

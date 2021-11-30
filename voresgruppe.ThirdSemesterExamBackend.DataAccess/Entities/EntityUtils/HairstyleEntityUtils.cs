@@ -1,7 +1,6 @@
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
-using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 
-namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
+namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
 {
     public class HairstyleEntityUtils
     {

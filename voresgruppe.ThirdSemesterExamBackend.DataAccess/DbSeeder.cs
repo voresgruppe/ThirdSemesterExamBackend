@@ -22,9 +22,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 
         void addMockData_Hairstyle()
         {
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "kort"});
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "langt"});
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "gryde"});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "kort", EstimatedTime = 40});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "langt", EstimatedTime = 50});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "gryde", EstimatedTime = 35});
         }
 
         void AddMockData_Customer()
@@ -36,6 +36,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             _ctx.Customer.Add(new CustomerEntity
                 {Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11111111"});
 
+        }
+
+        void AddMockData_Admins()
+        {
+            _ctx.Admins.Add(new AdminEntity() {Username = "John", Password = "John123"});
+            _ctx.Admins.Add(new AdminEntity() {Username = "Gerda", Password = "Gerda123"});
         }
     }
 }
