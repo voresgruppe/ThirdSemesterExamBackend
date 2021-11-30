@@ -10,6 +10,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
     public class HairstyleRepository : IHairStyleRepository
     {
         private readonly MainDbContext _ctx;
+        private HairstyleEntityUtils _hairstyleEntityUtils = new();
 
         public HairstyleRepository(MainDbContext ctx)
         {
@@ -24,22 +25,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
         public List<HairStyle> FindAll()
         {
             return _ctx.Hairstyles
-                .Select(he => new HairStyle
-                {
-                    Id = he.Id, Name = he.Name, EstimatedTime = he.EstimatedTime
-                })
+                .Select(he => _hairstyleEntityUtils.EntityToHairStyle(he))
                 .ToList();
         }
 
         public HairStyle ReadById(int expectedId)
         {
             var foundHairstyleEntity = _ctx.Hairstyles.Find(expectedId);
-            return new HairStyle
-            {
-                Id = foundHairstyleEntity.Id, 
-                Name = foundHairstyleEntity.Name,
-                EstimatedTime = foundHairstyleEntity.EstimatedTime
-            };
+            return _hairstyleEntityUtils.EntityToHairStyle(foundHairstyleEntity);
         }
 
         public bool DeleteById(int id)
@@ -58,12 +51,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             };
            HairstyleEntity entity = _ctx.Hairstyles.Add(hairstyleEntity).Entity;
            _ctx.SaveChanges();
-           return new HairStyle
-           {
-               Id = entity.Id,
-               Name = entity.Name,
-               EstimatedTime = entity.EstimatedTime
-           };
+           return _hairstyleEntityUtils.EntityToHairStyle(entity);
         }
 
         public HairStyle UpdateHairStyle(int oldHairStyleId, HairStyle newHairstyle)
@@ -74,12 +62,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             
             HairstyleEntity entity =_ctx.Hairstyles.Update(oldHairstyle).Entity;
             _ctx.SaveChanges();
-            return new HairStyle
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                EstimatedTime = entity.EstimatedTime
-            };
+            return _hairstyleEntityUtils.EntityToHairStyle(entity);
         }
     }
 }
