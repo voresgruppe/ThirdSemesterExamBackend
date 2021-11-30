@@ -17,6 +17,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             _ctx.Database.EnsureCreated();
             addMockData_Hairstyle();
             AddMockData_Customer();
+            AddMockData_Admins();
             _ctx.SaveChanges();
         }
 

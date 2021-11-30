@@ -5,10 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Core\voresgruppe.ThirdSemesterExamBackend.Core.csproj" />
       <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.DataAccess\voresgruppe.ThirdSemesterExamBackend.DataAccess.csproj" />
       <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Domain\voresgruppe.ThirdSemesterExamBackend.Domain.csproj" />

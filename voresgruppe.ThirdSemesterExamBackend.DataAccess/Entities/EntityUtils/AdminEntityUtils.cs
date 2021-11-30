@@ -8,6 +8,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
         {
             return new Admin()
             {
+                Id = entity.Id,
                 Username = entity.Username,
                 Password = entity.Password,
             };

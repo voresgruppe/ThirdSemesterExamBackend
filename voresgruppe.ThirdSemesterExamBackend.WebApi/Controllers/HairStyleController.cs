@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using voresgruppe.ThirdSemesterExamBackend.Core.IServices;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
@@ -50,10 +46,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
             var createdHairstyle = _hairstyleService.CreateHairstyle(hairStyle);
             return Created($"https://localhost/api/hairstyles/{createdHairstyle}", createdHairstyle);
         }
-        [HttpPut("{oldHairstyleId}")]
-        public ActionResult<HairStyle> Update(int oldHairstyleId, HairStyle newHairstyle)
+        [HttpPut]
+        public ActionResult<HairStyle> Update(int id, string name, int estimatedTime)
         {
-            var updatedHairstyle = _hairstyleService.UpdateHairstyle(oldHairstyleId, newHairstyle);
+             
+            var updatedHairstyle = _hairstyleService.UpdateHairstyle(id, new HairStyle() {Name = name, EstimatedTime = estimatedTime});
             return Created($"https://localhost/api/hairstyles/{updatedHairstyle}", updatedHairstyle);
         }
     }

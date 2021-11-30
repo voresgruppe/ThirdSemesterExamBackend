@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using voresgruppe.ThirdSemesterExamBackend.Core.IServices;
+using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories;
 using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
@@ -47,6 +48,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 //Customer
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
+                //Admin
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<IAdminService, AdminService>();
             
             //Setting up DB info
             services.AddDbContext<MainDbContext>(
