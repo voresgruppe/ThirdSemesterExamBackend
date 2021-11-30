@@ -116,6 +116,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             _fakeContext.Set<HairstyleEntity>().AddRange(fakeList);
             _fakeContext.SaveChanges();
 
+            fakeList.Remove(selectedHairstyle);
             var expected = fakeList.Select(he => new HairStyle
                 {
                     Id = he.Id, Name = he.Name, EstimatedTime = he.EstimatedTime
