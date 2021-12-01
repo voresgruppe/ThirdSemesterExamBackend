@@ -6,6 +6,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
     public interface ICustomerRepository
     {
         List<Customer> FindAll();
-        Customer FindById(int i);
+        Customer FindById(int id);
+        bool DeleteById(int id);
     }
 }

@@ -25,7 +25,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
 
         public Customer GetCustomerById(int id)
         {
-            throw new System.NotImplementedException();
+            return _customerRepository.FindById(id);
+        }
+
+        public bool DeleteCustomerById(int id)
+        {
+            return _customerRepository.DeleteById(id);
         }
     }
 }

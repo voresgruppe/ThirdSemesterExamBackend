@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
@@ -31,9 +32,29 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             }).ToList();
         }
 
-        public Customer FindById(int i)
+        public Customer FindById(int id)
         {
-            throw new System.NotImplementedException();
+            if (FindAll().Count < id)
+            {
+                throw new InvalidDataException("Id is too high");
+            }
+            
+            return _ctx.Customer.Select(ce => new Customer
+            {
+                Id = ce.Id,
+                Name = ce.Name,
+                Email = ce.Email,
+                PhoneNumber = ce.PhoneNumber
+            }).FirstOrDefault(ce => ce.Id == id);
         }
+
+        public bool DeleteById(int id)
+        {
+            var customer = _ctx.Customer.Find(id);
+            _ctx.Customer.Remove(customer);
+            _ctx.SaveChanges();
+            return true;
+        }
+
     }
 }

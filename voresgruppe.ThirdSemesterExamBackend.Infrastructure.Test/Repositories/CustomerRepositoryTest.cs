@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using EntityFrameworkCore.Testing.Moq;
+using Newtonsoft.Json;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
@@ -15,7 +16,36 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
 {
     public class CustomerRepositoryTest
     {
+        private MainDbContext _fakeContext;
+        private CustomerRepository _repository;
+        private List<CustomerEntity> _list;
 
+
+        #region Helpers
+
+        private void SetupArrangeFakeDB()
+        {
+            
+            
+            //Arrange
+            _fakeContext = Create.MockedDbContextFor<MainDbContext>();
+            _repository = new CustomerRepository(_fakeContext);
+            _list = new List<CustomerEntity>
+            {
+                new CustomerEntity {Id = 1, Name = "Per", Email = "postmandper@hotmail.com", PhoneNumber = "22334422"},
+                new CustomerEntity {Id = 2, Name = "Birgit", Email = "boomerbirgit@boomermail.com", PhoneNumber = "12341234"},
+                new CustomerEntity {Id = 3, Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11111111"}
+            };
+            _fakeContext.Set<CustomerEntity>().AddRange(_list);
+            _fakeContext.SaveChanges();
+        }
+
+        #endregion
+        
+
+        #region Repository
+
+         
         [Fact]
         public void CustomerRepository_IsICustomerRepository()
         {
@@ -31,21 +61,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             Assert.Equal("Customer Repository must have a DBContext", exception.Message);
         }
 
+        #endregion
+       
+
+        #region FindAll
+
         [Fact]
         public void FindAll_GetAllCustomersEntitiesInDBContext_AsAListOfCustomers()
         {
-            //Arrange
-            MainDbContext fakeContext = Create.MockedDbContextFor<MainDbContext>();
-            CustomerRepository repository = new CustomerRepository(fakeContext);
-            List<CustomerEntity> list = new List<CustomerEntity>
-            {
-                new CustomerEntity {Id = 1, Name = "Per", Email = "postmandper@hotmail.com", PhoneNumber = "22334422"},
-                new CustomerEntity {Id = 2, Name = "Birgit", Email = "boomerbirgit@boomermail.com", PhoneNumber = "12341234"},
-                new CustomerEntity {Id = 3, Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11111111"}
-            };
-            fakeContext.Set<CustomerEntity>().AddRange(list);
-            fakeContext.SaveChanges();
-            List<Customer> expectedList = list.Select(pe => new Customer
+            SetupArrangeFakeDB();
+            List<Customer> expectedList = _list.Select(pe => new Customer
                 {
                     Id = pe.Id,
                     Name = pe.Name,
@@ -54,11 +79,80 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
                 })
                 .ToList();
             //Act
-            var actualResult = repository.FindAll();
+            var actualResult = _repository.FindAll();
             
             //Assert
             Assert.Equal(expectedList,actualResult, new Comparer());
         }
+
+        #endregion
+        
+
+        #region FindById
+
+        
+        [Fact]
+        public void FindById_TooHighId_ThrowsInvalidDataException()
+        {
+            SetupArrangeFakeDB();
+            //Act
+            InvalidDataException exception = Assert.Throws<InvalidDataException>(() => _repository.FindById(4));
+            //Assert
+            Assert.Equal("Id is too high", exception.Message);
+        }
+
+        [Theory]
+        [InlineData(1, "Per", "postmandper@hotmail.com", "22334422")]
+        [InlineData(2,"Birgit", "boomerbirgit@boomermail.com", "12341234")]
+        [InlineData(3,"Frederik", "prinsen@gmail.com", "11111111")]
+        public void FindById_Tests(int id, string name, string email, string phoneNumber)
+        {
+            SetupArrangeFakeDB();
+            
+            string expected = JsonConvert.SerializeObject(new Customer {Id = id, Name = name, Email = email, PhoneNumber = phoneNumber});
+            
+            string actual = JsonConvert.SerializeObject(_repository.FindById(id));
+            
+            Assert.Equal(expected,actual);
+        }
+
+        #endregion
+
+        #region Delete
+
+        [Fact]
+        public void DeleteById_DeleteValidCustomer()
+        {
+            List<Customer> expectedList = new List<Customer>
+            {
+                new Customer {Id = 2, Name = "Birgit", Email = "boomerbirgit@boomermail.com", PhoneNumber = "12341234"},
+                new Customer {Id = 3, Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11111111"}
+            };
+            int removeCustomerWithThisId = 1;
+            SetupArrangeFakeDB();
+            _repository.DeleteById(removeCustomerWithThisId);
+            var actualResult = _repository.FindAll();
+            Assert.Equal(expectedList,actualResult, new Comparer());
+        }
+
+        #endregion
+
+        #region Update
+
+        /*public void UpdateNameByIdTest(int id, Customer c)
+        {
+            SetupArrangeFakeDB();
+
+            Customer newCustomer = new Customer {Id = id, Name = c.Name, Email = c.Email, PhoneNumber = c.PhoneNumber};
+
+            string expected = JsonConvert.SerializeObject(newCustomer);
+
+            string actual = JsonConvert.SerializeObject(_repository.UpdateCustomer(id,newCustomer));
+            Assert.Equal(expected, actual);
+        }*/
+
+        #endregion
+        
     }
     
     public class Comparer: IEqualityComparer<Customer>

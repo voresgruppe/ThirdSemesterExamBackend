@@ -63,11 +63,20 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void GetCustomerById_CallsCustomerRepoFindById_ExactlyOnce()
         {
-            //_service.GetCustomerById(1);
-            //_mock.Verify(r => r.FindById(1), Times.Once);
+            _service.GetCustomerById(1);
+            _mock.Verify(r => r.FindById(1), Times.Once);
         }
-        
-        
+
+        #endregion
+
+        #region DeleteCustomerById
+
+        [Fact]
+        public void DeleteCusomerById_CallsCustomerRepoDeleteById_ExactlyOnce()
+        {
+            _service.DeleteCustomerById(1);
+            _mock.Verify(r=>r.DeleteById(1));
+        }
 
         #endregion
         

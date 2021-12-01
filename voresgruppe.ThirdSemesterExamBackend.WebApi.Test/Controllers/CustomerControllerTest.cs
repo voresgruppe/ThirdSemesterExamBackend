@@ -152,5 +152,18 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         
 
         #endregion
+
+        #region Delete
+
+        [Fact]
+        public void DeleteById_CallsServicesGetCustomerById_Once()
+        {
+            _controller.GetById(1);
+            _service.Verify(s=>s.GetCustomerById(1),Times.Once);
+        }
+
+        #endregion
+        
+       
     }
 }

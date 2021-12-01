@@ -23,6 +23,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
             Assert.NotNull(service);
         }
 
+        #region Getall
+
         [Fact]
         public void GetCustomers_WithNoParam_ReturnsListOfAllCustomers()
         {
@@ -33,6 +35,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
             Assert.Equal(fakeList, _service.GetCustomers());
         }
 
+        #endregion
+
+        #region GetById
+        
         [Fact]
         public void GetCustomerById_ReturnsASingularCustomer()
         {
@@ -41,5 +47,22 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
             _mock.Setup(s => s.GetCustomerById(1)).Returns(fakeCustomer);
             Assert.Equal(fakeCustomer,_service.GetCustomerById(1));
         }
+
+        #endregion
+
+        #region Delete
+
+        [Fact]
+        public void DeleteCustomerById_ReturnsTrue()
+        {
+            Customer fakeCustomer = new Customer();
+            fakeCustomer.Id = 1;
+            _mock.Setup(s => s.DeleteCustomerById(1)).Returns(true);
+            Assert.True(_service.DeleteCustomerById(1));
+        }
+
+        #endregion
+
+       
     }
 }

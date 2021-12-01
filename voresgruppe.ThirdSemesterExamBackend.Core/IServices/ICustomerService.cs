@@ -7,5 +7,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
     {
         List<Customer> GetCustomers();
         Customer GetCustomerById(int id);
+        bool DeleteCustomerById(int id);
     }
 }

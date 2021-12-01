@@ -35,5 +35,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _customerService.GetCustomerById(id);
         }
+
+        [HttpDelete]
+        ActionResult<bool> DeleteById(int id)
+        {
+            return _customerService.DeleteCustomerById(id);
+        }
     }
 }
