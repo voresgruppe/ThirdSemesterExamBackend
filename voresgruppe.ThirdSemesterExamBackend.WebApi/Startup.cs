@@ -20,6 +20,9 @@ using voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories;
 using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 using voresgruppe.ThirdSemesterExamBackend.Domain.Services;
 using voresgruppe.ThirdSemesterExamBackend.Security;
+using voresgruppe.ThirdSemesterExamBackend.Security.IRepositories;
+using voresgruppe.ThirdSemesterExamBackend.Security.Models;
+using voresgruppe.ThirdSemesterExamBackend.Security.Repositories;
 using voresgruppe.ThirdSemesterExamBackend.Security.Services;
 
 namespace voresgruppe.ThirdSemesterExamBackend.WebApi
@@ -103,6 +106,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
             services.AddScoped<IAdminService, AdminService>();
                 //Security
             services.AddScoped<ISecurityService, SecurityService>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAuthService, AuthUserService>();
             
             //Setting up DB info
             services.AddDbContext<MainDbContext>(
@@ -142,8 +147,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "voresgruppe.ThirdSemesterExamBackend.WebApi"));
                 app.UseCors("Dev-cors");
                 new DbSeeder(context).SeedDevelopment();
-                authDbContext.Database.EnsureDeleted();
-                authDbContext.Database.EnsureCreated();
+                new AuthDbSeeder(authDbContext).SeedDevelopment();
             }
 
             app.UseHttpsRedirection();
