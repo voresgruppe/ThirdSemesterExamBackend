@@ -9,5 +9,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
         Customer FindById(int id);
         bool DeleteById(int id);
         Customer CreateCustomer(Customer customer);
+        Customer UpdateCustomer(int id, Customer customer);
     }
 }

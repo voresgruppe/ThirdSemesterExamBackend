@@ -9,5 +9,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
         Customer GetCustomerById(int id);
         bool DeleteCustomerById(int id);
         Customer CreateCustomer(Customer customer);
+        Customer UpdateCustomer(int id, Customer customer);
     }
 }

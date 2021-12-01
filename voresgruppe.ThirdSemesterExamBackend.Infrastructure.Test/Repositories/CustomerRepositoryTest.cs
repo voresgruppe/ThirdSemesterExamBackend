@@ -157,9 +157,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
         #endregion
 
         #region Update
-
-        /*public void UpdateNameByIdTest(int id, Customer c)
+[Fact]
+        public void UpdateNameByIdTest()
         {
+            int id = 1;
+            Customer c = new Customer();
+
             SetupArrangeFakeDB();
 
             Customer newCustomer = new Customer {Id = id, Name = c.Name, Email = c.Email, PhoneNumber = c.PhoneNumber};
@@ -168,7 +171,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
 
             string actual = JsonConvert.SerializeObject(_repository.UpdateCustomer(id,newCustomer));
             Assert.Equal(expected, actual);
-        }*/
+        }
 
         #endregion
         

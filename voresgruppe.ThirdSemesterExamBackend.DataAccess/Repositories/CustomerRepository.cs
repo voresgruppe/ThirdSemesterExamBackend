@@ -70,5 +70,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             _ctx.SaveChanges();
             return _customerEntityUtils.EntityToCustomer(ce);
         }
+
+        public Customer UpdateCustomer(int id, Customer customer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
