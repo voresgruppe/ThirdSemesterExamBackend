@@ -16,6 +16,8 @@ using voresgruppe.ThirdSemesterExamBackend.DataAccess;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories;
 using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 using voresgruppe.ThirdSemesterExamBackend.Domain.Services;
+using voresgruppe.ThirdSemesterExamBackend.Security;
+using voresgruppe.ThirdSemesterExamBackend.Security.Services;
 
 namespace voresgruppe.ThirdSemesterExamBackend.WebApi
 {
@@ -51,6 +53,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 //Admin
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAdminService, AdminService>();
+                //Security
+            services.AddScoped<ISecurityService, SecurityService>();
             
             //Setting up DB info
             services.AddDbContext<MainDbContext>(

@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "voresgruppe.ThirdSemesterEx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "voresgruppe.ThirdSemesterExamBackend.WebApi.Test", "voresgruppe.ThirdSemesterExamBackend.WebApi.Test\voresgruppe.ThirdSemesterExamBackend.WebApi.Test.csproj", "{92706136-6153-41DE-BA44-6E49C475158B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "voresgruppe.ThirdSemesterExamBackend.Security", "voresgruppe.ThirdSemesterExamBackend.Security\voresgruppe.ThirdSemesterExamBackend.Security.csproj", "{0E23762D-8A12-415A-9E5C-E6AD7F5000CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,7 @@ Global
 		{D30520BE-13D3-4325-B113-056EB55E1A10} = {140CE950-7BDD-4C5A-AFAD-238DF0FBC857}
 		{E8390138-6750-4C82-BC3D-4775800C9237} = {7495B20F-595E-4E97-BF7E-D7B095058F25}
 		{92706136-6153-41DE-BA44-6E49C475158B} = {AEC98F16-D807-433A-8A9A-32AB35DC5437}
+		{0E23762D-8A12-415A-9E5C-E6AD7F5000CA} = {17AA51CE-C567-4FFA-BE33-447330A1BACB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{44A1F345-B285-41F0-826C-1AB8103B8563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -76,5 +79,9 @@ Global
 		{92706136-6153-41DE-BA44-6E49C475158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92706136-6153-41DE-BA44-6E49C475158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92706136-6153-41DE-BA44-6E49C475158B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E23762D-8A12-415A-9E5C-E6AD7F5000CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E23762D-8A12-415A-9E5C-E6AD7F5000CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E23762D-8A12-415A-9E5C-E6AD7F5000CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E23762D-8A12-415A-9E5C-E6AD7F5000CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
