@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
+
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 {
@@ -10,9 +10,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         {
             
         }
-
+        
         public virtual DbSet<HairstyleEntity> Hairstyles { get; set; }
         public virtual DbSet<CustomerEntity> Customer { get; set; }
         public virtual DbSet<AdminEntity> Admins { get; set; }
+        
     }
 }
