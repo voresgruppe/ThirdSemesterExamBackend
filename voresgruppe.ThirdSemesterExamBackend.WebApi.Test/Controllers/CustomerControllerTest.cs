@@ -154,16 +154,47 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         #endregion
 
         #region Delete
+        [Fact]
+        public void DeleteById_HasDeleteHttpAttribute()
+        {
+            var methodInfo = typeof(CustomerController)
+                .GetMethods()
+                .FirstOrDefault(m => m.Name == "DeleteById");
+            var attribute = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpDeleteAttribute");
+            Assert.NotNull(attribute);
+        }
 
         [Fact]
         public void DeleteById_CallsServicesGetCustomerById_Once()
         {
-            _controller.GetById(1);
-            _service.Verify(s=>s.GetCustomerById(1),Times.Once);
+            _controller.DeleteById(1);
+            _service.Verify(s=>s.DeleteCustomerById(1),Times.Once);
         }
 
         #endregion
+
+        #region Create
+        [Fact]
+        public void Create_HasPostHttpAttribute()
+        {
+            var methodInfo = typeof(CustomerController)
+                .GetMethods()
+                .FirstOrDefault(m => m.Name == "CreateCustomer");
+            var attribute = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpPostAttribute");
+            Assert.NotNull(attribute);
+        }
         
+        [Fact]
+        public void Create_CallsServicesCreateCustomer_Once()
+        {
+            Customer c = new Customer();
+            _controller.CreateCustomer(c);
+            _service.Verify(s=>s.CreateCustomer(c),Times.Once);
+        }
+        
+        #endregion
        
     }
 }

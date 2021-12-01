@@ -8,5 +8,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
         List<Customer> FindAll();
         Customer FindById(int id);
         bool DeleteById(int id);
+        Customer CreateCustomer(Customer customer);
     }
 }

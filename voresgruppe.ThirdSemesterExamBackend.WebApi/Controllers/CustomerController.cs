@@ -37,9 +37,17 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         }
 
         [HttpDelete]
-        ActionResult<bool> DeleteById(int id)
+        public ActionResult<bool> DeleteById(int id)
         {
             return _customerService.DeleteCustomerById(id);
+        }
+
+        [HttpPost]
+        public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
+        {
+            Customer createdCustomer = _customerService.CreateCustomer(customer);
+            return Created($"https://localhost/api/products/{createdCustomer}", createdCustomer);
+            
         }
     }
 }

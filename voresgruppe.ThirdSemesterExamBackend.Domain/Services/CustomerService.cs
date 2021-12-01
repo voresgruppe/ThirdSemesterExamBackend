@@ -32,5 +32,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         {
             return _customerRepository.DeleteById(id);
         }
+
+        public Customer CreateCustomer(Customer customer)
+        {
+            return _customerRepository.CreateCustomer(customer);
+        }
     }
 }

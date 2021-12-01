@@ -63,6 +63,18 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
 
         #endregion
 
+        #region Create
+
+        [Fact]
+        public void CreateCustomer_ReturnsCustomer()
+        {
+            Customer customer = new Customer();
+            _mock.Setup(s => s.CreateCustomer(customer)).Returns(customer);
+            Assert.Equal(customer,_service.CreateCustomer(customer));
+        }
+
+        #endregion
+
        
     }
 }

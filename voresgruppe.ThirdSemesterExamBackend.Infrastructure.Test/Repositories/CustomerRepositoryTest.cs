@@ -42,7 +42,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
 
         #endregion
         
-
         #region Repository
 
          
@@ -62,7 +61,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
         }
 
         #endregion
-       
 
         #region FindAll
 
@@ -87,7 +85,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
 
         #endregion
         
-
         #region FindById
 
         
@@ -133,6 +130,28 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             _repository.DeleteById(removeCustomerWithThisId);
             var actualResult = _repository.FindAll();
             Assert.Equal(expectedList,actualResult, new Comparer());
+        }
+
+        #endregion
+
+        #region Create
+
+        [Fact]
+        public void Create_CreatesCustomer()
+        {
+            SetupArrangeFakeDB();
+            Customer c = new Customer {Id = 4, Name = "Bobby", Email = "bobbySloppy@outlook.com", PhoneNumber = "33228844"};
+            
+            var fakeList = new List<Customer>
+            {
+                new Customer {Id = 1, Name = "Per", Email = "postmandper@hotmail.com", PhoneNumber = "22334422"},
+                new Customer {Id = 2, Name = "Birgit", Email = "boomerbirgit@boomermail.com", PhoneNumber = "12341234"},
+                new Customer {Id = 3, Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11111111"},
+                new Customer {Id = 4, Name = "Bobby", Email = "bobbySloppy@outlook.com", PhoneNumber = "33228844"}
+            };
+            _repository.CreateCustomer(c);
+            var actualResult = _repository.FindAll();
+            Assert.Equal(fakeList, actualResult, new Comparer());
         }
 
         #endregion

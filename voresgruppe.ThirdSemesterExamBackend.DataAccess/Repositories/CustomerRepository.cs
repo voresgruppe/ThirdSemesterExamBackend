@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
+using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
+using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils;
 using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
@@ -10,6 +12,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
     public class CustomerRepository : ICustomerRepository
     {
         private readonly MainDbContext _ctx;
+        private CustomerEntityUtils _customerEntityUtils = new();
 
         public CustomerRepository(MainDbContext ctx)
         {
@@ -56,5 +59,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             return true;
         }
 
+        public Customer CreateCustomer(Customer customer)
+        {
+            var ce = _ctx.Customer.Add(new CustomerEntity
+            {
+                Name = customer.Name,
+                Email = customer.Email,
+                PhoneNumber = customer.PhoneNumber
+            }).Entity;
+            _ctx.SaveChanges();
+            return _customerEntityUtils.EntityToCustomer(ce);
+        }
     }
 }
