@@ -5,7 +5,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security
 {
     public class AuthDbContext:DbContext
     {
-        protected AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
+        public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         {
             
         }
