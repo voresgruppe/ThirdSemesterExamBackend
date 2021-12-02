@@ -195,6 +195,21 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         }
         
         #endregion
+
+        #region Update
+
+        [Fact]
+        public void Update_HasPutHttpAttribute()
+        {
+            var methodInfo = typeof(CustomerController)
+                .GetMethods()
+                .FirstOrDefault(m => m.Name == "UpdateCustomer");
+            var attribute = methodInfo.CustomAttributes
+                .FirstOrDefault(ca => ca.AttributeType.Name == "HttpPutAttribute");
+            Assert.NotNull(attribute);
+        }
+
+        #endregion
        
     }
 }

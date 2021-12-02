@@ -107,11 +107,18 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 //Admin
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAdminService, AdminService>();
+
                 //Security
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAuthService, AuthUserService>();
             services.AddScoped<IAuthDbSeeder, AuthDbSeeder>();
+
+                //Appointment
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            
+
             
             //Setting up DB info
             services.AddDbContext<MainDbContext>(

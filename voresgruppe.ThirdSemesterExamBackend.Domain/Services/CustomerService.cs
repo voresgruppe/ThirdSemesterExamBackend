@@ -37,5 +37,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         {
             return _customerRepository.CreateCustomer(customer);
         }
+
+        public Customer UpdateCustomer(int id, Customer customer)
+        {
+            return _customerRepository.UpdateCustomer(id,customer);
+        }
     }
 }

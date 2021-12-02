@@ -1,3 +1,5 @@
+using System;
+using Microsoft.EntityFrameworkCore;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
@@ -18,6 +20,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             addMockData_Hairstyle();
             AddMockData_Customer();
             AddMockData_Admins();
+            AddMockData_Appointment();
             _ctx.SaveChanges();
         }
 
@@ -48,6 +51,18 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         {
             _ctx.Admins.Add(new AdminEntity() {Username = "John", Password = "John123"});
             _ctx.Admins.Add(new AdminEntity() {Username = "Gerda", Password = "Gerda123"});
+        }
+
+        void AddMockData_Appointment()
+        {
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today, CustomerId = 1});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(-1), CustomerId = 2});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 3});
+        }
+
+        void SetupRelations()
+        {
+            
         }
     }
 }

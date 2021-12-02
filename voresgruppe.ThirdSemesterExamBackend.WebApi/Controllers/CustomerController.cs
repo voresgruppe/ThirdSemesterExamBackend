@@ -47,7 +47,19 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             Customer createdCustomer = _customerService.CreateCustomer(customer);
             return Created($"https://localhost/api/products/{createdCustomer}", createdCustomer);
-            
+        }
+
+        [HttpPut]
+        public ActionResult<Customer> UpdateCustomer(int id, Customer customer)
+        {
+            var c = new Customer
+            {
+                Name = customer.Name,
+                Email = customer.Email,
+                PhoneNumber = customer.PhoneNumber
+            };
+            Customer updateCustomer = _customerService.UpdateCustomer(id, c);
+            return Created($"https://localhost/api/products/{updateCustomer}", updateCustomer);
         }
     }
 }
