@@ -50,7 +50,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         }
 
         [HttpPut]
-        public ActionResult<Customer> UpdateCustomer([FromBody] int id, Customer customer)
+        public ActionResult<Customer> UpdateCustomer(int id, Customer customer)
         {
             var c = new Customer
             {
