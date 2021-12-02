@@ -1,6 +1,6 @@
 using voresgruppe.ThirdSemesterExamBackend.Security.Models;
 
-namespace voresgruppe.ThirdSemesterExamBackend.Security
+namespace voresgruppe.ThirdSemesterExamBackend.Security.IServices
 {
     public interface IAuthService
     {

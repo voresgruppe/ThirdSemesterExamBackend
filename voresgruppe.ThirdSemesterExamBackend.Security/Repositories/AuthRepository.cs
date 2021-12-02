@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using voresgruppe.ThirdSemesterExamBackend.Security.Entities;
 using voresgruppe.ThirdSemesterExamBackend.Security.IRepositories;
 using voresgruppe.ThirdSemesterExamBackend.Security.Models;
 
@@ -36,7 +37,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Repositories
 
         public AuthUser FindUser(string username)
         {
-            var entity = _ctx.AuthUsers
+            AuthUserEntity entity = _ctx.AuthUsers
                 .FirstOrDefault(user => username.Equals(user.Username));
             if (entity == null) return null;
             return EntityToAuthUser(entity);

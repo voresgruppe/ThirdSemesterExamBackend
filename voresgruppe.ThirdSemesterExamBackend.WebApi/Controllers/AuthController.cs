@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using voresgruppe.ThirdSemesterExamBackend.Core.IServices;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.Security;
+using voresgruppe.ThirdSemesterExamBackend.Security.IServices;
 
 namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
 {

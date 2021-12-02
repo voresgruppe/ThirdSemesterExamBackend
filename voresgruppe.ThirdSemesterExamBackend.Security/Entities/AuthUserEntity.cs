@@ -1,4 +1,6 @@
-namespace voresgruppe.ThirdSemesterExamBackend.Security.Models
+using System;
+
+namespace voresgruppe.ThirdSemesterExamBackend.Security.Entities
 {
     public class AuthUserEntity
     {

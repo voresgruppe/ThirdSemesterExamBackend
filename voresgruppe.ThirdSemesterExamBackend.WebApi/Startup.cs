@@ -21,6 +21,7 @@ using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 using voresgruppe.ThirdSemesterExamBackend.Domain.Services;
 using voresgruppe.ThirdSemesterExamBackend.Security;
 using voresgruppe.ThirdSemesterExamBackend.Security.IRepositories;
+using voresgruppe.ThirdSemesterExamBackend.Security.IServices;
 using voresgruppe.ThirdSemesterExamBackend.Security.Models;
 using voresgruppe.ThirdSemesterExamBackend.Security.Repositories;
 using voresgruppe.ThirdSemesterExamBackend.Security.Services;
@@ -138,7 +139,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDbContext context, AuthDbContext authDbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDbContext context, AuthDbContext authDbContext, ISecurityService securityService)
         {
             if (env.IsDevelopment())
             {
@@ -147,7 +148,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "voresgruppe.ThirdSemesterExamBackend.WebApi"));
                 app.UseCors("Dev-cors");
                 new DbSeeder(context).SeedDevelopment();
-                new AuthDbSeeder(authDbContext).SeedDevelopment();
+                new AuthDbSeeder(authDbContext, securityService).SeedDevelopment();
             }
 
             app.UseHttpsRedirection();
