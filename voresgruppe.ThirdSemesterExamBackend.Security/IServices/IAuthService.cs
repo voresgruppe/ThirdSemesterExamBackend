@@ -4,6 +4,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security
 {
     public interface IAuthService
     {
-        public AuthUser Login(string username, string password);
+        public AuthUser GetUser(string username);
     }
 }

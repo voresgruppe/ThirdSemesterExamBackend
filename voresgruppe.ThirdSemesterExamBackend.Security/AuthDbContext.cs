@@ -10,6 +10,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security
             
         }
 
-        public DbSet<LoginUserEntity> LoginUsers { get; set; }
+        public DbSet<AuthUserEntity> AuthUsers { get; set; }
     }
 }

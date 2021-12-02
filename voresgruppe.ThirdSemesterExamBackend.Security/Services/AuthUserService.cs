@@ -12,9 +12,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Services
             _authRepository = authRepository;
         }
         
-        public AuthUser Login(string username, string password)
+        public AuthUser GetUser(string username)
         {
-            return _authRepository.FindByUsernameAndPassword(username, password);
+            return _authRepository.FindUser(username);
         }
     }
 }

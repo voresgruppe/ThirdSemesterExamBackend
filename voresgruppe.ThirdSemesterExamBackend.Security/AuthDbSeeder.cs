@@ -15,10 +15,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security
         {
             _ctx.Database.EnsureDeleted();
             _ctx.Database.EnsureCreated();
-            _ctx.LoginUsers.Add(new LoginUserEntity()
+            _ctx.AuthUsers.Add(new AuthUserEntity()
             {
                 Username = "Knud",
-                Password = "123"
+                HashedPassword = "123"
             });
             _ctx.SaveChanges();
         }

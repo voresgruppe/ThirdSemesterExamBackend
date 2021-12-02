@@ -1,9 +1,10 @@
 namespace voresgruppe.ThirdSemesterExamBackend.Security.Models
 {
-    public class LoginUserEntity
+    public class AuthUserEntity
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
+        public string HashedPassword { get; set; }
+        public string Salt { get; set; }
     }
 }

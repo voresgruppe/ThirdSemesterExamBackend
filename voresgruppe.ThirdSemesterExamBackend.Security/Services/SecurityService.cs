@@ -22,7 +22,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Services
 
         public JwtToken GenerateJwtToken(string username, string password)
         {
-            var user = _authService.Login(username, password);
+            var user = _authService.GetUser(username);
             
             if (user!= null)
             {
