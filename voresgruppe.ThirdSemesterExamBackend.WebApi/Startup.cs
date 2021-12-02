@@ -51,6 +51,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 //Admin
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAdminService, AdminService>();
+                //Appointment
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            
             
             //Setting up DB info
             services.AddDbContext<MainDbContext>(
