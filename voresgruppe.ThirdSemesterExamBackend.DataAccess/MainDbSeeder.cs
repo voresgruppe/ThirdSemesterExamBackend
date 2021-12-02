@@ -2,11 +2,11 @@ using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 {
-    public class DbSeeder
+    public class MainDbSeeder : IMainDbSeeder
     {
         private readonly MainDbContext _ctx;
 
-        public DbSeeder(MainDbContext ctx)
+        public MainDbSeeder(MainDbContext ctx)
         {
             _ctx = ctx;
         }
@@ -19,6 +19,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             AddMockData_Customer();
             AddMockData_Admins();
             _ctx.SaveChanges();
+        }
+
+        public void SeedProduction()
+        {
+            _ctx.Database.EnsureCreated();
         }
 
         void addMockData_Hairstyle()

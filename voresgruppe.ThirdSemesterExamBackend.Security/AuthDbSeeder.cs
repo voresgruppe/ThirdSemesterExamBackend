@@ -5,7 +5,7 @@ using voresgruppe.ThirdSemesterExamBackend.Security.Models;
 
 namespace voresgruppe.ThirdSemesterExamBackend.Security
 {
-    public class AuthDbSeeder
+    public class AuthDbSeeder : IAuthDbSeeder
     {
         private readonly AuthDbContext _ctx;
         private readonly ISecurityService _securityService;
@@ -29,6 +29,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security
                 HashedPassword = _securityService.HashedPassword("123456", Encoding.ASCII.GetBytes(salt))
             });
             _ctx.SaveChanges();
+        }
+
+        public void SeedProduction()
+        {
+            _ctx.Database.EnsureCreated();
         }
     }
 }

@@ -96,6 +96,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 
 
             //Setting up dependency injection
+                //MainDbSeeder
+            services.AddScoped<IMainDbSeeder, MainDbSeeder>();
                 //HairStyle
             services.AddScoped<IHairStyleRepository, HairstyleRepository>();
             services.AddScoped<IHairStyleService, HairStyleService>();
@@ -109,6 +111,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAuthService, AuthUserService>();
+            services.AddScoped<IAuthDbSeeder, AuthDbSeeder>();
             
             //Setting up DB info
             services.AddDbContext<MainDbContext>(
@@ -139,7 +142,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDbContext context, AuthDbContext authDbContext, ISecurityService securityService)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDbContext context, AuthDbContext authDbContext, ISecurityService securityService,
+            IMainDbSeeder mainDbSeeder, IAuthDbSeeder authDbSeeder)
         {
             if (env.IsDevelopment())
             {
@@ -147,8 +151,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "voresgruppe.ThirdSemesterExamBackend.WebApi"));
                 app.UseCors("Dev-cors");
-                new DbSeeder(context).SeedDevelopment();
-                new AuthDbSeeder(authDbContext, securityService).SeedDevelopment();
+                mainDbSeeder.SeedDevelopment();
+                authDbSeeder.SeedDevelopment();
             }
 
             app.UseHttpsRedirection();
