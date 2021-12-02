@@ -8,9 +8,11 @@
       <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Core\voresgruppe.ThirdSemesterExamBackend.Core.csproj" />
       <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.DataAccess\voresgruppe.ThirdSemesterExamBackend.DataAccess.csproj" />
       <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Domain\voresgruppe.ThirdSemesterExamBackend.Domain.csproj" />
+      <ProjectReference Include="..\voresgruppe.ThirdSemesterExamBackend.Security\voresgruppe.ThirdSemesterExamBackend.Security.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.12" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
