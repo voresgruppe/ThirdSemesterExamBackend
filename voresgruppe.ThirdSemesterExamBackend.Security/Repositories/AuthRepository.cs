@@ -40,6 +40,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Repositories
                 .FirstOrDefault(user => username.Equals(user.Username));
             if (entity == null) return null;
             return EntityToAuthUser(entity);
-            
+        }
+
     }
 }
