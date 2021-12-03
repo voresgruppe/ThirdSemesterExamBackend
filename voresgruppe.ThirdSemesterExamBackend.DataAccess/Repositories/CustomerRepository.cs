@@ -26,13 +26,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 
         public List<Customer> FindAll()
         {
-            return _ctx.Customer.Select(pe => new Customer
-            {
-                Id = pe.Id,
-                Name = pe.Name,
-                Email = pe.Email,
-                PhoneNumber = pe.PhoneNumber
-            }).ToList();
+            return _ctx.Customer.Select(pe => _customerEntityUtils.EntityToCustomer(pe)).ToList();
         }
 
         public Customer FindById(int id)
