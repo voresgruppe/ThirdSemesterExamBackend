@@ -44,6 +44,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
                 {Name = "Birgit", Email = "boomerbirgit@boomermail.com", PhoneNumber = "12341234"});
             _ctx.Customer.Add(new CustomerEntity
                 {Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11111111"});
+            _ctx.SaveChanges();
 
         }
 
@@ -56,8 +57,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         void AddMockData_Appointment()
         {
             _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today, CustomerId = 1});
-            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(-1), CustomerId = 2});
-            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 3});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(-1), CustomerId = 1});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 1});
         }
 
         void SetupRelations()

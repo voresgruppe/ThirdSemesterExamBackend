@@ -18,8 +18,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AppointmentEntity>().HasOne(customerEntity => customerEntity.Customer).WithMany()
-                .HasForeignKey(customerEntity => new {customerEntity.CustomerId});
+            modelBuilder.Entity<AppointmentEntity>()
+                .HasOne(a => a.Customer)
+                .WithMany(customerEntity => customerEntity.AppointmentEntities);
         }
 
         
