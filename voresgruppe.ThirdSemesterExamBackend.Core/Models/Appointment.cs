@@ -7,7 +7,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Models
         public int Id { get; set; }
         
         public int CustomerId { get; set; }
-        //public Customer Customer { get; set; }
+        
+        public Customer Customer { get; set; }
         public DateTime AppointmentTime { get; set; }
     }
 }

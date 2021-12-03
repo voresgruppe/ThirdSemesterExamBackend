@@ -36,13 +36,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
                 throw new InvalidDataException("Id is too high");
             }
             
-            return _ctx.Customer.Select(ce => new Customer
-            {
-                Id = ce.Id,
-                Name = ce.Name,
-                Email = ce.Email,
-                PhoneNumber = ce.PhoneNumber
-            }).FirstOrDefault(ce => ce.Id == id);
+            return _customerEntityUtils.EntityToCustomer(_ctx.Customer.Find(id));
         }
 
         public bool DeleteById(int id)
