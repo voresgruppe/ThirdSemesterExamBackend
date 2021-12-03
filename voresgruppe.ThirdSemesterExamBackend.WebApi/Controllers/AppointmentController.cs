@@ -41,5 +41,30 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _appointmentService.GetByCustomerId(id);
         }
+
+        [HttpDelete]
+        public ActionResult<bool> DeleteById(int id)
+        {
+            return _appointmentService.DeleteAppointmentById(id);
+        }
+
+        [HttpPost]
+        public ActionResult<Appointment> CreateAppointment([FromBody] Appointment app)
+        {
+            Appointment createdApp = _appointmentService.CreateAppointment(app);
+            return Created($"https://localhost/api/products/{createdApp}", createdApp);
+        }
+
+        [HttpPut]
+        public ActionResult<Appointment> UpdateAppointment(int id, Appointment appointment)
+        {
+            var app = new Appointment()
+            {
+                AppointmentTime = appointment.AppointmentTime,
+                Customer = appointment.Customer
+            };
+            Appointment updateAppointment = _appointmentService.UpdateAppointment(id, app);
+            return Created($"https://localhost/api/products/{updateAppointment}", updateAppointment);
+        }
     }
 }

@@ -63,10 +63,5 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 1});
             _ctx.SaveChanges();
         }
-
-        void SetupRelations()
-        {
-            
-        }
     }
 }
