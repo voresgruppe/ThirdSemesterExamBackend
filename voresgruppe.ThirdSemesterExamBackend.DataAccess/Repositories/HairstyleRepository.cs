@@ -15,12 +15,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 
         public HairstyleRepository(MainDbContext ctx)
         {
-            if (ctx == null)
-            {
-                throw new InvalidDataException("HairstyleRepository need a DBcontext");
-            }
-
-            _ctx = ctx;
+            _ctx = ctx ?? throw new InvalidDataException("HairstyleRepository need a DBcontext");
         }
 
         public List<HairStyle> FindAll()

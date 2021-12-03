@@ -34,6 +34,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "kort", EstimatedTime = 40});
             _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "langt", EstimatedTime = 50});
             _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "gryde", EstimatedTime = 35});
+            _ctx.SaveChanges();
         }
 
         void AddMockData_Customer()
@@ -52,6 +53,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         {
             _ctx.Admins.Add(new AdminEntity() {Username = "John", Password = "John123"});
             _ctx.Admins.Add(new AdminEntity() {Username = "Gerda", Password = "Gerda123"});
+            _ctx.SaveChanges();
         }
 
         void AddMockData_Appointment()
@@ -59,6 +61,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today, CustomerId = 1});
             _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(-1), CustomerId = 1});
             _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 1});
+            _ctx.SaveChanges();
         }
 
         void SetupRelations()

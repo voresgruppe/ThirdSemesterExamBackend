@@ -11,7 +11,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
             Appointment appointment = new Appointment()
             {
                 Id = entity.Id,
-                Customer = customerEntityUtils.EntityToCustomer(entity.Customer),
+                CustomerId = entity.CustomerId,
                 AppointmentTime = entity.AppointmentTime,
             };
 
