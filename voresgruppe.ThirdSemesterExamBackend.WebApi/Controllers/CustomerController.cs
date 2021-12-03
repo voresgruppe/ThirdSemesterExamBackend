@@ -33,7 +33,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Customer> GetById(int id)
         {
-            return _customerService.GetCustomerById(id);
+            return Ok(_customerService.GetCustomerById(id));
         }
 
         [HttpDelete]

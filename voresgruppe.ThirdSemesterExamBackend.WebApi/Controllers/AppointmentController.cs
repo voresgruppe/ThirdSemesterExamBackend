@@ -32,7 +32,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Appointment> GetById(int id)
         {
-            return _appointmentService.GetById(id);
+            return Ok(_appointmentService.GetById(id));
         }
 
         
