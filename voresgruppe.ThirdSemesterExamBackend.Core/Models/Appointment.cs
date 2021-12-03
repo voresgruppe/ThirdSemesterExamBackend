@@ -9,6 +9,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Models
         public int CustomerId { get; set; }
         
         public Customer Customer { get; set; }
-        public DateTime AppointmentTime { get; set; }
+        public String AppointmentTime { get; set; }
     }
 }

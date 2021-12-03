@@ -12,7 +12,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
             {
                 Id = entity.Id,
                 CustomerId = entity.CustomerId,
-                AppointmentTime = entity.AppointmentTime,
+                AppointmentTime = entity.AppointmentTime.ToString(),
             };
 
             return appointment;
