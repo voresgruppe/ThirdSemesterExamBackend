@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -51,7 +52,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
         {
             var ae = _ctx.Appointment.Add(new AppointmentEntity()
             {
-                AppointmentTime = app.AppointmentTime,
+                AppointmentTime = DateTime.Parse(app.AppointmentTime),
                 CustomerId = app.Customer.Id,
             }).Entity;
             _ctx.SaveChanges();
@@ -61,7 +62,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
         public Appointment UpdateAppointment(int id, Appointment app)
         {
             AppointmentEntity ae = _ctx.Appointment.Find(id);
-            ae.AppointmentTime = app.AppointmentTime;
+            ae.AppointmentTime = DateTime.Parse(app.AppointmentTime);
             ae.CustomerId = app.Customer.Id;
             AppointmentEntity returnEntity = _ctx.Appointment.Update(ae).Entity;
             _ctx.SaveChanges();
