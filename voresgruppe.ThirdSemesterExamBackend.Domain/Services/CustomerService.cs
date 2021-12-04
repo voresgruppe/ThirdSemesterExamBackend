@@ -28,6 +28,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
             return _customerRepository.FindById(id);
         }
 
+        public Customer GetByPhoneNumber(string phone)
+        {
+            return _customerRepository.FindByPhoneNumber(phone);
+        }
+
         public bool DeleteCustomerById(int id)
         {
             return _customerRepository.DeleteById(id);

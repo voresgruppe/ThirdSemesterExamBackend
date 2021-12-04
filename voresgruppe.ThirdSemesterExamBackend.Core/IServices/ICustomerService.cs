@@ -7,6 +7,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
     {
         List<Customer> GetCustomers();
         Customer GetCustomerById(int id);
+
+        public Customer GetByPhoneNumber(string phone);
         bool DeleteCustomerById(int id);
         Customer CreateCustomer(Customer customer);
         Customer UpdateCustomer(int id, Customer customer);

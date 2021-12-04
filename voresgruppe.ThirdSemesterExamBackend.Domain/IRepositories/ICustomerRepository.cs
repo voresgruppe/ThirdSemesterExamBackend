@@ -7,8 +7,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
     {
         List<Customer> FindAll();
         Customer FindById(int id);
+        Customer FindByPhoneNumber(string phone);
         bool DeleteById(int id);
         Customer CreateCustomer(Customer customer);
         Customer UpdateCustomer(int id, Customer customer);
+        
     }
 }

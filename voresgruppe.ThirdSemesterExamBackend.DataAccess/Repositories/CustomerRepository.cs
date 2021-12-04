@@ -39,6 +39,19 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             return _customerEntityUtils.EntityToCustomer(_ctx.Customer.Find(id));
         }
 
+        public Customer FindByPhoneNumber(string phone)
+        {
+            foreach (var customer in _ctx.Customer)
+            {
+                if (customer.PhoneNumber == phone)
+                {
+                    return _customerEntityUtils.EntityToCustomer(customer);
+                }
+            }
+
+            return null;
+        }
+
         public bool DeleteById(int id)
         {
             var customer = _ctx.Customer.Find(id);

@@ -36,6 +36,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return Ok(_customerService.GetCustomerById(id));
         }
+        
+        [HttpGet(nameof(GetByPhone)+"{phone}")]
+        public ActionResult<Customer> GetByPhone(string phone)
+        {
+            return Ok(_customerService.GetByPhoneNumber(phone));
+        }
+        
+        
 
         [HttpDelete]
         public ActionResult<bool> DeleteById(int id)
