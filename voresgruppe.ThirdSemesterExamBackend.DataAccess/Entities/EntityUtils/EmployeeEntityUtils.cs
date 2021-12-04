@@ -10,6 +10,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
             {
                 Id = entity.Id,
                 Name = entity.Name,
+                AboutMe = entity.AboutMe,
             };
         }
     }

@@ -19,7 +19,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
             _ctx.Database.EnsureCreated();
             addMockData_Hairstyle();
             AddMockData_Customer();
-            AddMockData_Admins();
+            AddMockData_employees();
             AddMockData_Appointment();
             _ctx.SaveChanges();
         }
@@ -49,10 +49,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 
         }
 
-        void AddMockData_Admins()
+        void AddMockData_employees()
         {
-            _ctx.Admins.Add(new EmployeeEntity() {Name = "John"});
-            _ctx.Admins.Add(new EmployeeEntity() {Name = "Gerda"});
+            _ctx.Employee.Add(new EmployeeEntity() {Name = "John", AboutMe = "Jeg er Frisør"});
+            _ctx.Employee.Add(new EmployeeEntity() {Name = "Gerda", AboutMe = "Jeg er Gerda"});
             _ctx.SaveChanges();
         }
 

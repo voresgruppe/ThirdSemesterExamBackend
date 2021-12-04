@@ -24,19 +24,19 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 
         public List<Employee> FindAll()
         {
-            return _ctx.Admins
+            return _ctx.Employee
                 .Select(a => _employeeEntityUtils.EntityToAdmin(a))
                 .ToList();
         }
 
         public Employee ReadById(int expectedId)
         {
-            return _employeeEntityUtils.EntityToAdmin(_ctx.Admins.Find(expectedId));
+            return _employeeEntityUtils.EntityToAdmin(_ctx.Employee.Find(expectedId));
         }
 
         public bool DeleteById(int id)
         {
-            _ctx.Remove(_ctx.Admins.Find(id));
+            _ctx.Remove(_ctx.Employee.Find(id));
             _ctx.SaveChanges();
             return true;
         }
@@ -48,7 +48,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
                 Name = employee.Name,
             };
             
-            Employee createdEmployee = _employeeEntityUtils.EntityToAdmin(_ctx.Admins.Add(employeeEntity).Entity);
+            Employee createdEmployee = _employeeEntityUtils.EntityToAdmin(_ctx.Employee.Add(employeeEntity).Entity);
             _ctx.SaveChanges();
             return createdEmployee;
 
@@ -56,11 +56,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 
         public Employee Update(int id, Employee updatedEmployee)
         {
-            EmployeeEntity entityToUpdate = _ctx.Admins.Find(id);
+            EmployeeEntity entityToUpdate = _ctx.Employee.Find(id);
             entityToUpdate.Name = updatedEmployee.Name;
-            _ctx.Admins.Update(entityToUpdate);
+            _ctx.Employee.Update(entityToUpdate);
             _ctx.SaveChanges();
-            return _employeeEntityUtils.EntityToAdmin(_ctx.Admins.Find(id));
+            return _employeeEntityUtils.EntityToAdmin(_ctx.Employee.Find(id));
         }
     }
 }

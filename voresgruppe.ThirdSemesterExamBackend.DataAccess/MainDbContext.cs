@@ -13,7 +13,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         
         public virtual DbSet<HairstyleEntity> Hairstyles { get; set; }
         public virtual DbSet<CustomerEntity> Customer { get; set; }
-        public virtual DbSet<EmployeeEntity> Admins { get; set; }
+        public virtual DbSet<EmployeeEntity> Employee { get; set; }
         public virtual DbSet<AppointmentEntity> Appointment { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
