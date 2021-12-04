@@ -8,12 +8,12 @@ using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 {
-    public class AdminRepository : IAdminRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         private readonly MainDbContext _ctx;
-        private AdminEntityUtils _adminEntityUtils = new AdminEntityUtils();
+        private EmployeeEntityUtils _employeeEntityUtils = new EmployeeEntityUtils();
 
-        public AdminRepository(MainDbContext ctx)
+        public EmployeeRepository(MainDbContext ctx)
         {
             if (ctx == null)
             {
@@ -22,16 +22,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             _ctx = ctx;
         }
 
-        public List<Admin> FindAll()
+        public List<Employee> FindAll()
         {
             return _ctx.Admins
-                .Select(a => _adminEntityUtils.EntityToAdmin(a))
+                .Select(a => _employeeEntityUtils.EntityToAdmin(a))
                 .ToList();
         }
 
-        public Admin ReadById(int expectedId)
+        public Employee ReadById(int expectedId)
         {
-            return _adminEntityUtils.EntityToAdmin(_ctx.Admins.Find(expectedId));
+            return _employeeEntityUtils.EntityToAdmin(_ctx.Admins.Find(expectedId));
         }
 
         public bool DeleteById(int id)
@@ -41,28 +41,26 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             return true;
         }
 
-        public Admin Create(Admin admin)
+        public Employee Create(Employee employee)
         {
-            AdminEntity adminEntity = new AdminEntity()
+            EmployeeEntity employeeEntity = new EmployeeEntity()
             {
-                Username = admin.Username,
-                Password = admin.Password,
+                Name = employee.Name,
             };
             
-            Admin createdAdmin = _adminEntityUtils.EntityToAdmin(_ctx.Admins.Add(adminEntity).Entity);
+            Employee createdEmployee = _employeeEntityUtils.EntityToAdmin(_ctx.Admins.Add(employeeEntity).Entity);
             _ctx.SaveChanges();
-            return createdAdmin;
+            return createdEmployee;
 
         }
 
-        public Admin Update(int id, Admin updatedAdmin)
+        public Employee Update(int id, Employee updatedEmployee)
         {
-            AdminEntity entityToUpdate = _ctx.Admins.Find(id);
-            entityToUpdate.Username = updatedAdmin.Username;
-            entityToUpdate.Password = updatedAdmin.Password;
+            EmployeeEntity entityToUpdate = _ctx.Admins.Find(id);
+            entityToUpdate.Name = updatedEmployee.Name;
             _ctx.Admins.Update(entityToUpdate);
             _ctx.SaveChanges();
-            return _adminEntityUtils.EntityToAdmin(_ctx.Admins.Find(id));
+            return _employeeEntityUtils.EntityToAdmin(_ctx.Admins.Find(id));
         }
     }
 }

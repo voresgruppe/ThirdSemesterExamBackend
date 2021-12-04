@@ -51,8 +51,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 
         void AddMockData_Admins()
         {
-            _ctx.Admins.Add(new AdminEntity() {Username = "John", Password = "John123"});
-            _ctx.Admins.Add(new AdminEntity() {Username = "Gerda", Password = "Gerda123"});
+            _ctx.Admins.Add(new EmployeeEntity() {Name = "John"});
+            _ctx.Admins.Add(new EmployeeEntity() {Name = "Gerda"});
             _ctx.SaveChanges();
         }
 

@@ -31,7 +31,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Repositories
                 Id = authUserEntity.Id,
                 Username = authUserEntity.Username,
                 HashedPassword = authUserEntity.HashedPassword,
-                Salt = Encoding.ASCII.GetBytes(authUserEntity.Salt)
+                Salt = Encoding.ASCII.GetBytes(authUserEntity.Salt),
+                EmployeeId = authUserEntity.EmployeeId,
             };
         }
 

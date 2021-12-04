@@ -7,5 +7,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Models
         public string HashedPassword { get; set; }
         public byte[] Salt { get; set; }
         
+        public int EmployeeId { get; set; }
+        
     }
 }

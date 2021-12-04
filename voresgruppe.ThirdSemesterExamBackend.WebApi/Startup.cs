@@ -105,8 +105,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
                 //Admin
-            services.AddScoped<IAdminRepository, AdminRepository>();
-            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
 
                 //Security
             services.AddScoped<ISecurityService, SecurityService>();

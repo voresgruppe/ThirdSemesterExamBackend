@@ -12,43 +12,43 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private IAdminService _adminService;
+        private IEmployeeService _employeeService;
 
-        public AdminController(IAdminService adminService)
+        public AdminController(IEmployeeService employeeService)
         {
-            _adminService = adminService ?? throw new InvalidDataException("AdminService cannot be null");
+            _employeeService = employeeService ?? throw new InvalidDataException("AdminService cannot be null");
         }
 
         [HttpGet]
-        public ActionResult<List<Admin>> GetAll()
+        public ActionResult<List<Employee>> GetAll()
         {
-            return _adminService.GetAdmins();
+            return _employeeService.GetAll();
         }
         
         [HttpGet("{id}")]
-        public ActionResult<Admin> GetById(int id)
+        public ActionResult<Employee> GetById(int id)
         {
-            return _adminService.GetAdminById(id);
+            return _employeeService.GetById(id);
         }
 
         [HttpDelete]
         public ActionResult<bool> DeleteById(int id)
         {
-            return _adminService.DeleteAdminById(id);
+            return _employeeService.DeleteById(id);
         }
         
         [HttpPost]
-        public ActionResult<Admin> Create([FromBody]Admin admin)
+        public ActionResult<Employee> Create([FromBody]Employee employee)
         {
-            var createdAdmin = _adminService.CreateAdmin(admin);
+            var createdAdmin = _employeeService.Create(employee);
             return Created($"https://localhost/api/hairstyles/{createdAdmin}", createdAdmin);
         }
         
         [HttpPut]
-        public ActionResult<Admin> Update(int id, string username, string password)
+        public ActionResult<Employee> Update(int id, string username, string password)
         {
-            Admin admin = new Admin() {Username = username, Password = password};
-            var updatedAdmin = _adminService.UpdateAdmin(id, admin);
+            Employee employee = new Employee() {Name = username};
+            var updatedAdmin = _employeeService.Update(id, employee);
             return Created($"https://localhost/api/hairstyles/{updatedAdmin}", updatedAdmin);
         }
     }

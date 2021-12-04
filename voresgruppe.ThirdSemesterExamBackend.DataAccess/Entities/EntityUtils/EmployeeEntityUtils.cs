@@ -2,15 +2,14 @@ using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
 {
-    public class AdminEntityUtils
+    public class EmployeeEntityUtils
     {
-        public Admin EntityToAdmin(AdminEntity entity)
+        public Employee EntityToAdmin(EmployeeEntity entity)
         {
-            return new Admin()
+            return new Employee()
             {
                 Id = entity.Id,
-                Username = entity.Username,
-                Password = entity.Password,
+                Name = entity.Name,
             };
         }
     }
