@@ -60,7 +60,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         {
             _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today, CustomerId = 1});
             _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(-1), CustomerId = 1});
-            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 1});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 2});
             _ctx.SaveChanges();
         }
     }

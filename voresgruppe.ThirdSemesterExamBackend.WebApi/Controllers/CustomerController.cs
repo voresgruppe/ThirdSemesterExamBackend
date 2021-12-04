@@ -27,6 +27,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         [HttpGet]
         public ActionResult<List<Customer>> GetAll()
         {
+            Console.WriteLine("get");
             return _customerService.GetCustomers();
         }
 
@@ -42,11 +43,13 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
             return _customerService.DeleteCustomerById(id);
         }
 
-        [HttpPost]
-        public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
+        [HttpPost(nameof(CreateCustomer))]
+        public ActionResult<Customer> CreateCustomer(Customer customer)
         {
+            Console.WriteLine("add");
             Customer createdCustomer = _customerService.CreateCustomer(customer);
-            return Created($"https://localhost/api/products/{createdCustomer}", createdCustomer);
+            Console.WriteLine(customer);
+            return createdCustomer;
         }
 
         [HttpPut]
@@ -59,7 +62,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
                 PhoneNumber = customer.PhoneNumber
             };
             Customer updateCustomer = _customerService.UpdateCustomer(id, c);
-            return Created($"https://localhost/api/products/{updateCustomer}", updateCustomer);
+            return Created($"https://localhost/api/customers/{updateCustomer}", updateCustomer);
         }
     }
 }
