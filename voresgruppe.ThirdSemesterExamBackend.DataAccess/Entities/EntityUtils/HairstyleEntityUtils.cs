@@ -10,7 +10,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                EstimatedTime = entity.EstimatedTime
+                EstimatedTime = entity.EstimatedTime,
+                Description = entity.Description,
+                Price = entity.Price
             };
 
             return hairStyle;
