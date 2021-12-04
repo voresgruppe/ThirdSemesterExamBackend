@@ -31,6 +31,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
             return _appointmentRepository.FindByCustomerId(customerId);
         }
 
+        public List<Appointment> GetByEmployeeId(int id)
+        {
+            return _appointmentRepository.FindByEmployeeId(id);
+        }
+
         public bool DeleteAppointmentById(int id)
         {
             return _appointmentRepository.DeleteAppointmentById(id);

@@ -8,5 +8,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
         public int CustomerId { get; set; }
         public CustomerEntity Customer { get; set; }
         public DateTime AppointmentTime { get; set; }
+        
+        public int EmployeeId { get; set; }
     }
 }

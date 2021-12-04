@@ -41,6 +41,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _appointmentService.GetByCustomerId(id);
         }
+        
+        [HttpGet(nameof(GetByEmployee)+"{id}")]
+        public ActionResult<List<Appointment>> GetByEmployee(int id)
+        {
+            return _appointmentService.GetByEmployeeId(id);
+        }
 
         [HttpDelete]
         public ActionResult<bool> DeleteById(int id)

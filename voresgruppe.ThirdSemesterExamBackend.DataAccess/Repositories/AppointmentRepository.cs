@@ -39,6 +39,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
                 .Select(ae=> _appointmentEntityUtils.EntityToAppointment(ae))
                 .ToList();
         }
+        
+        public List<Appointment> FindByEmployeeId(int id)
+        {
+            return _ctx.Appointment
+                .Where(ae => ae.EmployeeId.Equals(id))
+                .Select(ae=> _appointmentEntityUtils.EntityToAppointment(ae))
+                .ToList();
+        }
 
         public bool DeleteAppointmentById(int id)
         {

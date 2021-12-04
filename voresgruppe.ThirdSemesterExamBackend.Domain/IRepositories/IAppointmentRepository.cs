@@ -9,6 +9,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories
         public Appointment ReadById(int id);
 
         public List<Appointment> FindByCustomerId(int customerId);
+
+        public List<Appointment> FindByEmployeeId(int id);
         bool DeleteAppointmentById(int id);
         Appointment CreateAppointment(Appointment app);
         Appointment UpdateAppointment(int id, Appointment app);
