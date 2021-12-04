@@ -26,7 +26,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security
             {
                 Username = "Knud",
                 Salt = salt,
-                HashedPassword = _securityService.HashedPassword("123456", Encoding.ASCII.GetBytes(salt))
+                HashedPassword = _securityService.HashedPassword("123456", Encoding.ASCII.GetBytes(salt)),
+                EmployeeId = 1,
             });
             _ctx.SaveChanges();
         }

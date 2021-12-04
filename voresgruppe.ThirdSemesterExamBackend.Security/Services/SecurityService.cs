@@ -38,7 +38,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Services
                 return new JwtToken()
                 {
                     Jwt = new JwtSecurityTokenHandler().WriteToken(token),
-                    Message = "Ok"
+                    Message = "Ok",
+                    EmployeeId = user.EmployeeId,
                 };
             }
 

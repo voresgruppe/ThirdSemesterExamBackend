@@ -10,11 +10,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
         private IEmployeeService _employeeService;
 
-        public AdminController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService)
         {
             _employeeService = employeeService ?? throw new InvalidDataException("AdminService cannot be null");
         }

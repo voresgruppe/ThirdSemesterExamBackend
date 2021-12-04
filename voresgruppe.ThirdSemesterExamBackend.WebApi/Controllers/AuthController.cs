@@ -31,6 +31,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
             {
                 Jwt = token.Jwt,
                 Message = token.Message,
+                EmployeeId = token.EmployeeId,
             };
 
         }
@@ -40,6 +41,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
     {
         public string Jwt { get; set; }
         public string Message { get; set; }
+
+        public int EmployeeId { get; set; }
     }
 
     public class LoginDto

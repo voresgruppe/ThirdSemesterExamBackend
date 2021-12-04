@@ -4,5 +4,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Security.Models
     {
         public string Jwt { get; set; }
         public string Message { get; set; }
+        
+        public int EmployeeId { get; set; }
     }
 }
