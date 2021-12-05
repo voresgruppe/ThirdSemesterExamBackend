@@ -54,11 +54,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
             return _appointmentService.DeleteAppointmentById(id);
         }
 
-        [HttpPost]
-        public ActionResult<Appointment> CreateAppointment([FromBody] Appointment app)
+        [HttpPost(nameof(CreateAppointment))]
+        public ActionResult<Appointment> CreateAppointment(Appointment app)
         {
             Appointment createdApp = _appointmentService.CreateAppointment(app);
-            return Created($"https://localhost/api/products/{createdApp}", createdApp);
+            return createdApp;
         }
 
         [HttpPut]
@@ -67,7 +67,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
             var app = new Appointment()
             {
                 AppointmentTime = appointment.AppointmentTime,
-                Customer = appointment.Customer
+                CustomerId = appointment.Id,
+                EmployeeId = appointment.EmployeeId,
             };
             Appointment updateAppointment = _appointmentService.UpdateAppointment(id, app);
             return Created($"https://localhost/api/products/{updateAppointment}", updateAppointment);

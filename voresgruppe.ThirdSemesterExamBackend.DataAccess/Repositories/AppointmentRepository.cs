@@ -58,11 +58,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 
         public Appointment CreateAppointment(Appointment app)
         {
-            var ae = _ctx.Appointment.Add(new AppointmentEntity()
-            {
-                AppointmentTime = DateTime.Parse(app.AppointmentTime),
-                CustomerId = app.Customer.Id,
-            }).Entity;
+
+
+            AppointmentEntity ae = _appointmentEntityUtils.AppointmentToEntity(app);
+            
+            _ctx.Appointment.Add(ae);
             _ctx.SaveChanges();
             return _appointmentEntityUtils.EntityToAppointment(ae);
         }
@@ -71,7 +71,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
         {
             AppointmentEntity ae = _ctx.Appointment.Find(id);
             ae.AppointmentTime = DateTime.Parse(app.AppointmentTime);
-            ae.CustomerId = app.Customer.Id;
+            ae.CustomerId = app.CustomerId;
             AppointmentEntity returnEntity = _ctx.Appointment.Update(ae).Entity;
             _ctx.SaveChanges();
             return _appointmentEntityUtils.EntityToAppointment(returnEntity);

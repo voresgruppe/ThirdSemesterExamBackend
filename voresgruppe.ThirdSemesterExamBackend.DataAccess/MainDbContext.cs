@@ -16,12 +16,15 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         public virtual DbSet<EmployeeEntity> Employee { get; set; }
         public virtual DbSet<AppointmentEntity> Appointment { get; set; }
 
+        
+        /*
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AppointmentEntity>()
                 .HasOne(a => a.Customer)
                 .WithMany(customerEntity => customerEntity.AppointmentEntities);
         }
+        */
 
         
     }
