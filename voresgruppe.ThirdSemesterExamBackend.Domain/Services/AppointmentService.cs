@@ -50,5 +50,15 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         {
             return _appointmentRepository.UpdateAppointment(id, app);
         }
+
+        public Customer GetCustomerById(int id)
+        {
+            return _appointmentRepository.GetCustomerById(id);
+        }
+
+        public Employee GetEmployeeById(int id)
+        {
+            return _appointmentRepository.GetEmployeeById(id);
+        }
     }
 }

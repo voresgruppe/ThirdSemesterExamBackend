@@ -1,4 +1,5 @@
 ﻿using System;
+using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
 {
@@ -8,6 +9,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
         public int CustomerId { get; set; }
         public CustomerEntity Customer { get; set; }
         public DateTime AppointmentTime { get; set; }
+        public EmployeeEntity Employee { get; set; }
         
         public int EmployeeId { get; set; }
     }

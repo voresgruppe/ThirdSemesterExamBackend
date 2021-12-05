@@ -13,5 +13,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
         bool DeleteAppointmentById(int id);
         Appointment CreateAppointment(Appointment app);
         Appointment UpdateAppointment(int id, Appointment app);
+        Customer GetCustomerById(int id);
+        Employee GetEmployeeById(int id);
     }
 }

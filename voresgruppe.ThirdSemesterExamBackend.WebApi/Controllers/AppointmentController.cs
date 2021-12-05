@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using voresgruppe.ThirdSemesterExamBackend.Core.IServices;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.Domain.Services;
+using voresgruppe.ThirdSemesterExamBackend.WebApi.DTOs;
 
 namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
 {
@@ -55,8 +56,15 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Appointment> CreateAppointment([FromBody] Appointment app)
+        public ActionResult<Appointment> CreateAppointment([FromBody] AppointmentDTO appDTO)
         {
+            var app = new Appointment()
+            {
+                AppointmentTime = appDTO.AppointmentTime,
+                Customer = _appointmentService.GetCustomerById(appDTO.CustomerId),
+                Employee = _appointmentService.GetEmployeeById(appDTO.EmployeeId)
+            };
+            
             Appointment createdApp = _appointmentService.CreateAppointment(app);
             return Created($"https://localhost/api/products/{createdApp}", createdApp);
         }

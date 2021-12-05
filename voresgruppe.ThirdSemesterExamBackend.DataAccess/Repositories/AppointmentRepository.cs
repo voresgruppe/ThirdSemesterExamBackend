@@ -13,11 +13,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
     public class AppointmentRepository : IAppointmentRepository
     {
         private MainDbContext _ctx;
-        private AppointmentEntityUtils _appointmentEntityUtils = new AppointmentEntityUtils();
+        private AppointmentEntityUtils _appointmentEntityUtils;
+        private CustomerEntityUtils _customerEntityUtils = new CustomerEntityUtils();
+        private EmployeeEntityUtils _employeeEntityUtils = new EmployeeEntityUtils();
 
         public AppointmentRepository(MainDbContext ctx)
         {
             _ctx = ctx ?? throw new InvalidDataException("AppointmentRepository need a DBcontext");
+            _appointmentEntityUtils = new AppointmentEntityUtils(_ctx);
         }
 
         public List<Appointment> FindAll()
@@ -62,9 +65,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             {
                 AppointmentTime = DateTime.Parse(app.AppointmentTime),
                 CustomerId = app.Customer.Id,
+                EmployeeId = app.Employee.Id
             }).Entity;
+            Appointment appointment = _appointmentEntityUtils.EntityToAppointment(ae);
+            /*var  c = _customerEntityUtils.EntityToCustomer(_ctx.Customer.Find(app.CustomerId));
+            appointment.Employee = _employeeEntityUtils.EntityToAdmin(_ctx.Employee.Find(app.EmployeeId));*/
             _ctx.SaveChanges();
-            return _appointmentEntityUtils.EntityToAppointment(ae);
+            
+            return appointment;
         }
 
         public Appointment UpdateAppointment(int id, Appointment app)
@@ -75,6 +83,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             AppointmentEntity returnEntity = _ctx.Appointment.Update(ae).Entity;
             _ctx.SaveChanges();
             return _appointmentEntityUtils.EntityToAppointment(returnEntity);
+        }
+
+        public Customer GetCustomerById(int id)
+        {
+            return _customerEntityUtils.EntityToCustomer(_ctx.Customer.Find(id));
+        }
+
+        public Employee GetEmployeeById(int id)
+        {
+            return _employeeEntityUtils.EntityToAdmin(_ctx.Employee.Find(id));
         }
     }
 }

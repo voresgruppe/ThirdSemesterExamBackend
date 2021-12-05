@@ -5,8 +5,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
 {
     public class CustomerEntityUtils
     {
-        private AppointmentEntityUtils _appointmentEntityUtils = new AppointmentEntityUtils();
-        
+
         public Customer EntityToCustomer(CustomerEntity entity)
         {
             Customer customer = new Customer

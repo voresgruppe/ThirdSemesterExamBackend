@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
 {
     public class EmployeeEntity
@@ -6,5 +8,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
         public string Name { get; set; }
         
         public string AboutMe { get; set; }
+        
+        public List<AppointmentEntity> AppointmentEntities { get; set; } = new List<AppointmentEntity>();
     }
 }

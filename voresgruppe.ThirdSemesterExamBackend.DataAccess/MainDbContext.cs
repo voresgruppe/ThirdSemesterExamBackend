@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 
 
@@ -20,6 +21,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         {
             modelBuilder.Entity<AppointmentEntity>()
                 .HasOne(a => a.Customer)
+                .WithMany(customerEntity => customerEntity.AppointmentEntities);
+
+            modelBuilder.Entity<AppointmentEntity>()
+                .HasOne(a => a.Employee)
                 .WithMany(customerEntity => customerEntity.AppointmentEntities);
         }
 
