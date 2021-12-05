@@ -62,12 +62,14 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 
         public Customer CreateCustomer(Customer customer)
         {
-            var ce = _ctx.Customer.Add(new CustomerEntity
+            var ce = new CustomerEntity
             {
                 Name = customer.Name,
                 Email = customer.Email,
                 PhoneNumber = customer.PhoneNumber
-            }).Entity;
+            };
+                
+            _ctx.Customer.Add(ce);
             _ctx.SaveChanges();
             return _customerEntityUtils.EntityToCustomer(ce);
         }

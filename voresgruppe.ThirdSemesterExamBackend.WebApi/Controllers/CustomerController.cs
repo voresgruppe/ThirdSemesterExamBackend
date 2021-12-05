@@ -27,7 +27,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         [HttpGet]
         public ActionResult<List<Customer>> GetAll()
         {
-            Console.WriteLine("get");
             return _customerService.GetCustomers();
         }
 
@@ -54,9 +53,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         [HttpPost(nameof(CreateCustomer))]
         public ActionResult<Customer> CreateCustomer(Customer customer)
         {
-            Console.WriteLine("add");
             Customer createdCustomer = _customerService.CreateCustomer(customer);
-            Console.WriteLine(customer);
             return createdCustomer;
         }
 
