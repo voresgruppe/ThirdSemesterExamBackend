@@ -86,8 +86,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         public void CreateCustomer_CallsCustomerRepoCreateCustomer_Once()
         {
             var c = new Customer();
+            c.PhoneNumber = "222";
             _service.CreateCustomer(c);
-            _mock.Verify(r=>r.CreateCustomer(c));
+            _mock.Verify(r=>r.CreateCustomer(c), Times.Once);
         }
 
         #endregion
