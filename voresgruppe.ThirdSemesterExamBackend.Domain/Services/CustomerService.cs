@@ -76,12 +76,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
 
         private string CheckIfStringIsNumberAndAddSpaceEveryTwoNumbers(string nr)
         {
-            int num;
-            bool isNumber = int.TryParse(nr, out num);
+            ulong num;
+            bool isNumber = ulong.TryParse(nr, out num);
             string realNumber = num.ToString();
             if (!isNumber)
             {
-                throw new InvalidDataException("Phone number must be a number (+ as first character is fine)");
+                throw new InvalidDataException("Phone number must be a number (+ as first character is fine) or phone number is more than 19 digits");
             }
             string returnValue = "";
             if (isNumber)
