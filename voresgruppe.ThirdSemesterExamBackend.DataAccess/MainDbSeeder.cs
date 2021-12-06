@@ -31,9 +31,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 
         void addMockData_Hairstyle()
         {
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "kort", EstimatedTime = 40, Description = "det mindre langt", Price = 3});
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "spidser", EstimatedTime = 50, Description = "det blir nogenlunde lige", Price = 45});
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "gryde", EstimatedTime = 35, Description = "bedre end pandehår", Price = 20});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "kort", EstimatedTime = 40, Description = "det mindre langt", Price = 3, PossibleStyles = "1,2"});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "spidser", EstimatedTime = 50, Description = "det blir nogenlunde lige", Price = 45, PossibleStyles = "1"});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "gryde", EstimatedTime = 35, Description = "bedre end pandehår", Price = 20, PossibleStyles = "1"});
             _ctx.SaveChanges();
         }
 

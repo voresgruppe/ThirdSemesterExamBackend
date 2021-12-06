@@ -8,24 +8,24 @@ using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 {
-    public class HairstyleRepository : IHairStyleRepository
+    public class HairstyleRepository : IHairstyleRepository
     {
         private readonly MainDbContext _ctx;
-        private HairstyleEntityUtils _hairstyleEntityUtils = new();
+        private readonly HairstyleEntityUtils _hairstyleEntityUtils = new();
 
         public HairstyleRepository(MainDbContext ctx)
         {
             _ctx = ctx ?? throw new InvalidDataException("HairstyleRepository need a DBcontext");
         }
 
-        public List<HairStyle> FindAll()
+        public List<Hairstyle> FindAll()
         {
             return _ctx.Hairstyles
                 .Select(he => _hairstyleEntityUtils.EntityToHairStyle(he))
                 .ToList();
         }
 
-        public HairStyle ReadById(int expectedId)
+        public Hairstyle ReadById(int expectedId)
         {
             var foundHairstyleEntity = _ctx.Hairstyles.Find(expectedId);
             return _hairstyleEntityUtils.EntityToHairStyle(foundHairstyleEntity);
@@ -39,23 +39,21 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
             return true;
         }
 
-        public HairStyle CreateHairStyle(HairStyle hairStyle)
+        public Hairstyle CreateHairStyle(Hairstyle hairstyle)
         {
-           HairstyleEntity hairstyleEntity = new HairstyleEntity
-            {
-                Name = hairStyle.Name,
-                EstimatedTime = hairStyle.EstimatedTime
-            };
+            HairstyleEntity hairstyleEntity = _hairstyleEntityUtils.HairstyleToEntity(hairstyle);
            HairstyleEntity entity = _ctx.Hairstyles.Add(hairstyleEntity).Entity;
            _ctx.SaveChanges();
            return _hairstyleEntityUtils.EntityToHairStyle(entity);
         }
 
-        public HairStyle UpdateHairStyle(int oldHairStyleId, HairStyle newHairstyle)
+        public Hairstyle UpdateHairStyle(int oldHairStyleId, Hairstyle newHairstyle)
         {
             HairstyleEntity oldHairstyle = _ctx.Hairstyles.Find(oldHairStyleId);
-            oldHairstyle.Name = newHairstyle.Name;
-            oldHairstyle.EstimatedTime = newHairstyle.EstimatedTime;
+            oldHairstyle = _hairstyleEntityUtils.HairstyleToEntity(newHairstyle);
+            oldHairstyle.Id = oldHairStyleId;
+            
+            
             
             HairstyleEntity entity =_ctx.Hairstyles.Update(oldHairstyle).Entity;
             _ctx.SaveChanges();

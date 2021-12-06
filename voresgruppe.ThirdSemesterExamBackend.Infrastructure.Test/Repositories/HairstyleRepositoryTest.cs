@@ -29,7 +29,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
         [Fact]
         public void HairstyleRepository_IsIHairstyleRepository()
         {
-            Assert.IsAssignableFrom<IHairStyleRepository>(_repo);
+            Assert.IsAssignableFrom<IHairstyleRepository>(_repo);
         }
 
         [Fact]
@@ -57,7 +57,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             _fakeContext.Set<HairstyleEntity>().AddRange(fakeList);
             _fakeContext.SaveChanges();
             var expected = fakeList
-                .Select(he => new HairStyle
+                .Select(he => new Hairstyle
             {
                 Id = he.Id, Name = he.Name, EstimatedTime = he.EstimatedTime
             })
@@ -86,7 +86,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             _fakeContext.Set<HairstyleEntity>().AddRange(fakeList);
             _fakeContext.SaveChanges();
 
-            var expected = new HairStyle
+            var expected = new Hairstyle
             {
                 Id = selectedHairstyle.Id, Name = selectedHairstyle.Name,
                 EstimatedTime = selectedHairstyle.EstimatedTime
@@ -117,7 +117,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             _fakeContext.SaveChanges();
 
             fakeList.Remove(selectedHairstyle);
-            var expected = fakeList.Select(he => new HairStyle
+            var expected = fakeList.Select(he => new Hairstyle
                 {
                     Id = he.Id, Name = he.Name, EstimatedTime = he.EstimatedTime
                 })
@@ -136,11 +136,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
         [Fact]
         public void createHairstyle_CreatesHairstyle()
         {
-            HairStyle hairStyle = new HairStyle {Name = "gryde", EstimatedTime = 10};
-            var fakeList = new List<HairStyle>();
-            fakeList.Add(hairStyle);
+            Hairstyle hairstyle = new Hairstyle {Name = "gryde", EstimatedTime = 10};
+            var fakeList = new List<Hairstyle>();
+            fakeList.Add(hairstyle);
 
-            _repo.CreateHairStyle(hairStyle);
+            _repo.CreateHairStyle(hairstyle);
             
             Assert.Equal(fakeList, _repo.FindAll(), new Comparer_ignoreID());
         }
@@ -152,26 +152,26 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
         [Fact]
         public void updateHairstyle_UpdatesHairstyle()
         {
-            var fakeList = new List<HairStyle>();
+            var fakeList = new List<Hairstyle>();
             
 
-            HairStyle oldHairStyle = _repo.CreateHairStyle(new HairStyle {Name = "gryde", EstimatedTime = 10});
-            HairStyle hairStyleToUpdate = new HairStyle
-                {Id = oldHairStyle.Id, Name = oldHairStyle.Name, EstimatedTime = oldHairStyle.EstimatedTime};
+            Hairstyle oldHairstyle = _repo.CreateHairStyle(new Hairstyle {Name = "gryde", EstimatedTime = 10});
+            Hairstyle hairstyleToUpdate = new Hairstyle
+                {Id = oldHairstyle.Id, Name = oldHairstyle.Name, EstimatedTime = oldHairstyle.EstimatedTime};
             
-            hairStyleToUpdate.Name = "langt";
-            fakeList.Add(hairStyleToUpdate);
+            hairstyleToUpdate.Name = "langt";
+            fakeList.Add(hairstyleToUpdate);
             
-            _repo.UpdateHairStyle(oldHairStyle.Id, hairStyleToUpdate);
+            _repo.UpdateHairStyle(oldHairstyle.Id, hairstyleToUpdate);
             
             Assert.Equal(fakeList, _repo.FindAll(), new Comparer());
         }
 
         #endregion
         
-        public class Comparer : IEqualityComparer<HairStyle>
+        public class Comparer : IEqualityComparer<Hairstyle>
         {
-            public bool Equals(HairStyle x, HairStyle y)
+            public bool Equals(Hairstyle x, Hairstyle y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (ReferenceEquals(x, null)) return false;
@@ -180,15 +180,15 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
                 return x.Id == y.Id && x.Name == y.Name && x.EstimatedTime == y.EstimatedTime;
             }
 
-            public int GetHashCode(HairStyle obj)
+            public int GetHashCode(Hairstyle obj)
             {
                 return HashCode.Combine(obj.Id, obj.Name, obj.EstimatedTime);
             }
         }
         
-        public class Comparer_ignoreID : IEqualityComparer<HairStyle>
+        public class Comparer_ignoreID : IEqualityComparer<Hairstyle>
         {
-            public bool Equals(HairStyle x, HairStyle y)
+            public bool Equals(Hairstyle x, Hairstyle y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (ReferenceEquals(x, null)) return false;
@@ -197,7 +197,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
                 return  x.Name == y.Name && x.EstimatedTime == y.EstimatedTime;
             }
 
-            public int GetHashCode(HairStyle obj)
+            public int GetHashCode(Hairstyle obj)
             {
                 return HashCode.Combine(obj.Name, obj.EstimatedTime);
             }

@@ -99,8 +99,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 //MainDbSeeder
             services.AddScoped<IMainDbSeeder, MainDbSeeder>();
                 //HairStyle
-            services.AddScoped<IHairStyleRepository, HairstyleRepository>();
-            services.AddScoped<IHairStyleService, HairStyleService>();
+            services.AddScoped<IHairstyleRepository, HairstyleRepository>();
+            services.AddScoped<IHairStyleService, HairstyleService>();
                 //Customer
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();

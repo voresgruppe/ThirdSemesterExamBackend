@@ -23,13 +23,13 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<HairStyle>> GetAll()
+        public ActionResult<List<Hairstyle>> GetAll()
         {
             return _hairstyleService.GetHairstyles();
         }
         
         [HttpGet("{id}")]
-        public ActionResult<HairStyle> GetById(int id)
+        public ActionResult<Hairstyle> GetById(int id)
         {
             return _hairstyleService.GetHairstyleByID(id);
         }
@@ -41,16 +41,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         }
         
         [HttpPost]
-        public ActionResult<HairStyle> Create([FromBody]HairStyle hairStyle)
+        public ActionResult<Hairstyle> Create([FromBody]Hairstyle hairstyle)
         {
-            var createdHairstyle = _hairstyleService.CreateHairstyle(hairStyle);
+            var createdHairstyle = _hairstyleService.CreateHairstyle(hairstyle);
             return Created($"https://localhost/api/hairstyles/{createdHairstyle}", createdHairstyle);
         }
         [HttpPut]
-        public ActionResult<HairStyle> Update(int id, string name, int estimatedTime)
+        public ActionResult<Hairstyle> Update(int id, Hairstyle hairstyle)
         {
              
-            var updatedHairstyle = _hairstyleService.UpdateHairstyle(id, new HairStyle() {Name = name, EstimatedTime = estimatedTime});
+            var updatedHairstyle = _hairstyleService.UpdateHairstyle(id, hairstyle);
             return Created($"https://localhost/api/hairstyles/{updatedHairstyle}", updatedHairstyle);
         }
     }

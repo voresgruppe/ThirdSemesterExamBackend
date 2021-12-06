@@ -5,41 +5,41 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.Models
 {
     public class HairstyleTest
     {
-        private  HairStyle _hairStyle;
+        private  Hairstyle _hairstyle;
         public HairstyleTest()
         {
-            _hairStyle = new HairStyle();
+            _hairstyle = new Hairstyle();
         }
 
         [Fact]
         public void Hairstyle_CanBeInitialized()
         {
             
-            Assert.NotNull(_hairStyle);
+            Assert.NotNull(_hairstyle);
         }
         
         [Fact]
         public void Hairstyle_Id_MustBeInt()
         {
             
-            Assert.True(_hairStyle.Id is int);
+            Assert.True(_hairstyle.Id is int);
         }
 
         [Fact]
         public void Hairstyle_SetId_StoresId()
         {
             
-            _hairStyle.Id = 1;
-            _hairStyle.Id = 2;
-            Assert.Equal(2, _hairStyle.Id);
+            _hairstyle.Id = 1;
+            _hairstyle.Id = 2;
+            Assert.Equal(2, _hairstyle.Id);
         }
 
         [Fact]
         public void Hairstyle_SetName_StoreNameAsString()
         {
-            _hairStyle.Name = "Kort";
-            _hairStyle.Name = "langt";
-            Assert.Equal("langt", _hairStyle.Name);
+            _hairstyle.Name = "Kort";
+            _hairstyle.Name = "langt";
+            Assert.Equal("langt", _hairstyle.Name);
         }
     }
 }

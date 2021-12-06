@@ -11,21 +11,21 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
 {
     public class HairStyleServiceTest
     {
-        private readonly Mock<IHairStyleRepository> _mock;
-        private readonly HairStyleService _service;
-        private readonly List<HairStyle> _expected;
+        private readonly Mock<IHairstyleRepository> _mock;
+        private readonly HairstyleService _service;
+        private readonly List<Hairstyle> _expected;
 
         public HairStyleServiceTest()
         {
-            _mock = new Mock<IHairStyleRepository>();
-            _service = new HairStyleService(_mock.Object);
-            _expected = new List<HairStyle>
+            _mock = new Mock<IHairstyleRepository>();
+            _service = new HairstyleService(_mock.Object);
+            _expected = new List<Hairstyle>
             {
-                new HairStyle
+                new Hairstyle
                 {
                     Id = 1, Name = "kort"
                 },
-                new HairStyle
+                new Hairstyle
                 {
                     Id = 2, Name = "langt"
                 }
@@ -47,13 +47,13 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void HairstyleService_WithNullRepository_ThrowsInvalidDataException()
         {
-            Assert.Throws<InvalidDataException>(() => new HairStyleService(null));
+            Assert.Throws<InvalidDataException>(() => new HairstyleService(null));
         }
         
         [Fact]
         public void HairstyleService_WithNullRepository_ThrowsInvalidDataExceptionWithMessage()
         {
-            var exception = Assert.Throws<InvalidDataException>(() => new HairStyleService(null));
+            var exception = Assert.Throws<InvalidDataException>(() => new HairstyleService(null));
             Assert.Equal("Repository cannot be null", exception.Message);
         }
         
@@ -85,7 +85,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void GetHairStyleByID_CallsRepositoryReadByID_ExactlyOnce()
         {
-            var fakeProduct = new HairStyle {Id = 1};
+            var fakeProduct = new Hairstyle {Id = 1};
             _mock.Setup(r => r.ReadById(1))
                 .Returns(fakeProduct);
             
@@ -96,7 +96,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void GetHairstyleByID_returnsCorrectHairstyle()
         {
-            var expected  = new HairStyle {Id = 1, Name = "gryde", EstimatedTime = 10};
+            var expected  = new Hairstyle {Id = 1, Name = "gryde", EstimatedTime = 10};
             _mock.Setup(r => r.ReadById(1))
                 .Returns(expected);
 
@@ -116,7 +116,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void CreateHairstyle_CreatesValidHairstyle()
         {
-            var expected  = new HairStyle {Id = 1, Name = "gryde", EstimatedTime = 10};
+            var expected  = new Hairstyle {Id = 1, Name = "gryde", EstimatedTime = 10};
             _mock.Setup(r => r.CreateHairStyle(expected))
                 .Returns(expected);
             var actual = _service.CreateHairstyle(expected);
@@ -126,8 +126,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Test.Services
         [Fact]
         public void UpdatesHairstyle_returnsHairstyle()
         {
-            var oldHairstyle  = new HairStyle {Id = 1, Name = "gryde", EstimatedTime = 10};
-            var expected  = new HairStyle {Id = 1, Name = "langt", EstimatedTime = 10};
+            var oldHairstyle  = new Hairstyle {Id = 1, Name = "gryde", EstimatedTime = 10};
+            var expected  = new Hairstyle {Id = 1, Name = "langt", EstimatedTime = 10};
             _mock.Setup(r => r.UpdateHairStyle(oldHairstyle.Id, expected))
                 .Returns(expected);
             var actual = _service.UpdateHairstyle(oldHairstyle.Id, expected);

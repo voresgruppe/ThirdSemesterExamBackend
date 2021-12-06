@@ -87,7 +87,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         {
             var method = typeof(HairStyleController)
                 .GetMethods().FirstOrDefault(m => "GetAll".Equals(m.Name));
-            Assert.Equal(typeof(ActionResult<List<HairStyle>>).FullName, method.ReturnType.FullName);
+            Assert.Equal(typeof(ActionResult<List<Hairstyle>>).FullName, method.ReturnType.FullName);
         }
         
         [Fact]
@@ -117,7 +117,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         {
             var method = typeof(HairStyleController)
                 .GetMethods().FirstOrDefault(m => "GetById".Equals(m.Name));
-            Assert.Equal(typeof(ActionResult<HairStyle>).FullName, method.ReturnType.FullName);
+            Assert.Equal(typeof(ActionResult<Hairstyle>).FullName, method.ReturnType.FullName);
         }
         
         [Fact]
@@ -177,7 +177,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         {
             var method = typeof(HairStyleController)
                 .GetMethods().FirstOrDefault(m => "Create".Equals(m.Name));
-            Assert.Equal(typeof(ActionResult<HairStyle>).FullName, method.ReturnType.FullName);
+            Assert.Equal(typeof(ActionResult<Hairstyle>).FullName, method.ReturnType.FullName);
         }
         
         [Fact]
@@ -193,10 +193,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void Create_CallsServicesCreate_ExactlyOnce()
         {
-            HairStyle hairStyle = new HairStyle();
-            _controller.Create(hairStyle);
+            Hairstyle hairstyle = new Hairstyle();
+            _controller.Create(hairstyle);
             
-            _service.Verify(s=> s.CreateHairstyle(hairStyle), Times.Once);
+            _service.Verify(s=> s.CreateHairstyle(hairstyle), Times.Once);
         }
         
         #endregion
@@ -208,7 +208,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         {
             var method = typeof(HairStyleController)
                 .GetMethods().FirstOrDefault(m => "Update".Equals(m.Name));
-            Assert.Equal(typeof(ActionResult<HairStyle>).FullName, method.ReturnType.FullName);
+            Assert.Equal(typeof(ActionResult<Hairstyle>).FullName, method.ReturnType.FullName);
         }
         
         [Fact]

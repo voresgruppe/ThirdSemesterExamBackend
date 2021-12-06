@@ -19,7 +19,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
         public void GetHairstyles_WithNoParam_ReturnsListOfAllProducts()
         {
             var mock = new Mock<IHairStyleService>();
-            var fakelist = new List<HairStyle>();
+            var fakelist = new List<Hairstyle>();
             mock.Setup(s => s.GetHairstyles())
                 .Returns(fakelist);
             var service = mock.Object;
@@ -30,7 +30,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
         public void GetHairStyleByID_ReturnsHairstyle()
         {
             var mock = new Mock<IHairStyleService>();
-            var fakeProduct = new HairStyle {Id = 1};
+            var fakeProduct = new Hairstyle {Id = 1};
             mock.Setup(s => s.GetHairstyleByID(1))
                 .Returns(fakeProduct);
             var service = mock.Object;
@@ -52,16 +52,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
         public void CreateHairstyle_CreatesHairstyle()
         {
             var mock = new Mock<IHairStyleService>();
-            HairStyle hairStyle = new HairStyle
+            Hairstyle hairstyle = new Hairstyle
             {
                 Id = 1,
                 Name = "krøller",
                 EstimatedTime = 200,
             };
-            mock.Setup(s => s.CreateHairstyle(hairStyle))
-                .Returns(hairStyle);
+            mock.Setup(s => s.CreateHairstyle(hairstyle))
+                .Returns(hairstyle);
             var service = mock.Object;
-            Assert.Equal(hairStyle, service.CreateHairstyle(hairStyle));
+            Assert.Equal(hairstyle, service.CreateHairstyle(hairstyle));
 
         }
         
@@ -69,17 +69,17 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Test.IServices
         public void UpdateHairstyle_updatesHairstyle()
         {
             var mock = new Mock<IHairStyleService>();
-            HairStyle hairStyle = new HairStyle
+            Hairstyle hairstyle = new Hairstyle
             {
                 Id = 1,
                 Name = "langt",
                 EstimatedTime = 200,
             };
             
-            mock.Setup(s => s.UpdateHairstyle(hairStyle.Id, hairStyle))
-                .Returns(hairStyle);
+            mock.Setup(s => s.UpdateHairstyle(hairstyle.Id, hairstyle))
+                .Returns(hairstyle);
             var service = mock.Object;
-            Assert.Equal(hairStyle, service.UpdateHairstyle(hairStyle.Id, hairStyle));
+            Assert.Equal(hairstyle, service.UpdateHairstyle(hairstyle.Id, hairstyle));
 
         }
     }
