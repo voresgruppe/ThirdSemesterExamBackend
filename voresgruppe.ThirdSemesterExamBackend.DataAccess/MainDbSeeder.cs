@@ -40,11 +40,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         void AddMockData_Customer()
         {
             _ctx.Customer.Add(new CustomerEntity
-                {Name = "Per", Email = "postmandper@hotmail.com", PhoneNumber = "22334422"});
+                {Name = "Per", Email = "postmandper@hotmail.com", PhoneNumber = "22 33 44 22"});
             _ctx.Customer.Add(new CustomerEntity
-                {Name = "Birgit", Email = "boomerbirgit@boomermail.com", PhoneNumber = "12341234"});
+                {Name = "Birgit", Email = "boomerbirgit@boomermail.com", PhoneNumber = "12 34 12 34"});
             _ctx.Customer.Add(new CustomerEntity
-                {Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11111111"});
+                {Name = "Frederik", Email = "prinsen@gmail.com", PhoneNumber = "11 11 11 11"});
             _ctx.SaveChanges();
 
         }
