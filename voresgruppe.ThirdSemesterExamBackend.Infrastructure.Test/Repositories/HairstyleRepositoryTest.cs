@@ -156,8 +156,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Infrastructure.Test.Repositories
             
 
             Hairstyle oldHairstyle = _repo.CreateHairStyle(new Hairstyle {Name = "gryde", EstimatedTime = 10});
-            Hairstyle hairstyleToUpdate = new Hairstyle
-                {Id = oldHairstyle.Id, Name = oldHairstyle.Name, EstimatedTime = oldHairstyle.EstimatedTime};
+            Hairstyle hairstyleToUpdate = oldHairstyle;
             
             hairstyleToUpdate.Name = "langt";
             fakeList.Add(hairstyleToUpdate);

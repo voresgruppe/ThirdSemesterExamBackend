@@ -50,12 +50,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
         public Hairstyle UpdateHairStyle(int oldHairStyleId, Hairstyle newHairstyle)
         {
             HairstyleEntity oldHairstyle = _ctx.Hairstyles.Find(oldHairStyleId);
-            oldHairstyle = _hairstyleEntityUtils.HairstyleToEntity(newHairstyle);
-            oldHairstyle.Id = oldHairStyleId;
             
-            
-            
-            HairstyleEntity entity =_ctx.Hairstyles.Update(oldHairstyle).Entity;
+            HairstyleEntity entity =_ctx.Hairstyles.Update(_hairstyleEntityUtils.UpdateHairstyle(oldHairstyle, newHairstyle)).Entity;
             _ctx.SaveChanges();
             return _hairstyleEntityUtils.EntityToHairStyle(entity);
         }

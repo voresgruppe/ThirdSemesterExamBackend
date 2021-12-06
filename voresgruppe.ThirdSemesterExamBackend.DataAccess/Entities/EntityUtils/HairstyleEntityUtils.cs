@@ -27,7 +27,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
         {
             return new HairstyleEntity()
             {
-                Id = hairstyle.Id,
                 Name = hairstyle.Name,
                 EstimatedTime = hairstyle.EstimatedTime,
                 Description = hairstyle.Description,
@@ -36,24 +35,37 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
             };
         }
 
+        public HairstyleEntity UpdateHairstyle(HairstyleEntity old, Hairstyle updated)
+        {
+            old.Name = updated.Name;
+            old.EstimatedTime = updated.EstimatedTime;
+            old.Description = updated.Description;
+            old.Price = updated.Price;
+            old.PossibleStyles = ListIntToString(updated.PossibleStyles);
+            return old;
+        }
+
         private List<int> StringToListInt(string s)
         {
-            List<int> possibleStyles = new List<int>();
-
-            string[] iDs = s.Split(",");
             
-            foreach (var iD in iDs)
+            List<int> possibleStyles = new List<int>();
+            if (s != null)
             {
-                
-                if (Int32.TryParse(iD, out int i))
+                string[] iDs = s.Split(",");
+
+                foreach (var iD in iDs)
                 {
-                   possibleStyles.Add(i); 
+
+                    if (Int32.TryParse(iD, out int i))
+                    {
+                        possibleStyles.Add(i);
+                    }
+                    else
+                    {
+                        Console.WriteLine(iD);
+                    }
+
                 }
-                else
-                {
-                    Console.WriteLine(iD);
-                }
-                
             }
 
             return possibleStyles;
