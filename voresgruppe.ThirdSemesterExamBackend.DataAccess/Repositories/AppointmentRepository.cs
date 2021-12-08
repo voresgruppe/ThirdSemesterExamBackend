@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils;

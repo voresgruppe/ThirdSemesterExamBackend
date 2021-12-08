@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using voresgruppe.ThirdSemesterExamBackend.Core.Models;
-
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
 {
     public class HairstyleEntity

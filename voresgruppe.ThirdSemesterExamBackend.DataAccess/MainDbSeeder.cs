@@ -1,5 +1,4 @@
 using System;
-using Microsoft.EntityFrameworkCore;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess

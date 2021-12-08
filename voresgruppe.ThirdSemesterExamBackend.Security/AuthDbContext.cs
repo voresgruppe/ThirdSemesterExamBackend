@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using voresgruppe.ThirdSemesterExamBackend.Security.Entities;
-using voresgruppe.ThirdSemesterExamBackend.Security.Models;
 
 namespace voresgruppe.ThirdSemesterExamBackend.Security
 {

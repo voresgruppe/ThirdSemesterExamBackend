@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using voresgruppe.ThirdSemesterExamBackend.Core.IServices;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
-using voresgruppe.ThirdSemesterExamBackend.Domain.Services;
 
 namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
 {

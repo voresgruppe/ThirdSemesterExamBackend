@@ -12,7 +12,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
         Hairstyle CreateHairstyle(Hairstyle hairstyle);
 
         Hairstyle UpdateHairstyle(int oldHairstyleId, Hairstyle newHairstyle);
-        
-        
+
+        public List<Hairstyle> GetListOfHairstyles_FromListOfId(List<int> possibleStyles);
     }
 }

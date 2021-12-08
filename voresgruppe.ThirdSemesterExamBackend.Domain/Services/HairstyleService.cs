@@ -39,5 +39,17 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         {
             return _hairstyleRepository.UpdateHairStyle(oldHairstyleId, newHairstyle);
         }
+
+        public List<Hairstyle> GetListOfHairstyles_FromListOfId(List<int> possibleStyles)
+        {
+            List<Hairstyle> hairstyles = new List<Hairstyle>();
+
+            foreach (var id in possibleStyles)
+            {
+                hairstyles.Add(_hairstyleRepository.ReadById(id));
+            }
+
+            return hairstyles;
+        }
     }
 }

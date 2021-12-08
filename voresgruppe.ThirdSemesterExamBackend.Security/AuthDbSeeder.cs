@@ -1,7 +1,6 @@
 using System.Text;
 using voresgruppe.ThirdSemesterExamBackend.Security.Entities;
 using voresgruppe.ThirdSemesterExamBackend.Security.IServices;
-using voresgruppe.ThirdSemesterExamBackend.Security.Models;
 
 namespace voresgruppe.ThirdSemesterExamBackend.Security
 {

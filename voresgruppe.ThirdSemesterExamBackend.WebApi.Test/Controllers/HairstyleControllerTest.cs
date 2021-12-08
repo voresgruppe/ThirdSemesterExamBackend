@@ -13,13 +13,13 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
 {
     public class HairstyleControllerTest
     {
-        private readonly HairStyleController _controller;
+        private readonly HairstyleController _controller;
         private readonly Mock<IHairStyleService> _service;
 
         public HairstyleControllerTest()
         {
             _service = new Mock<IHairStyleService>();
-            _controller = new HairStyleController(_service.Object);
+            _controller = new HairstyleController(_service.Object);
         }
 
         #region Controller
@@ -35,21 +35,21 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         public void HairStyleController_withNullService_ThrowsInvalidDataException()
         {
             Assert.Throws<InvalidDataException>(
-                () => new HairStyleController(null));
+                () => new HairstyleController(null));
         }
 
         [Fact]
         public void HairStyleController_withNullService_ThrowsInvalidDataException_WithMessage()
         {
             var exception = Assert.Throws<InvalidDataException>(
-                () => new HairStyleController(null));
+                () => new HairstyleController(null));
             Assert.Equal("hairStyleService Cannot be null", exception.Message);
         }
 
         [Fact]
         public void HairstyleController_UsesApiControllerAttribute()
         {
-            var typeInfo = typeof(HairStyleController).GetTypeInfo();
+            var typeInfo = typeof(HairstyleController).GetTypeInfo();
             var attribute = typeInfo.GetCustomAttributes()
                 .FirstOrDefault(a=> a.GetType()
                     .Name.Equals("ApiControllerAttribute"));
@@ -59,7 +59,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void HairStyleController_UsesRouteAttribute()
         {
-            var typeInfo = typeof(HairStyleController).GetTypeInfo();
+            var typeInfo = typeof(HairstyleController).GetTypeInfo();
             var attribute = typeInfo.GetCustomAttributes()
                 .FirstOrDefault(a=> a.GetType()
                     .Name.Equals("RouteAttribute"));
@@ -69,7 +69,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void HairStyleController_UsesRouteAttribute_WithParamApiControllerNameRoute()
         {
-            var typeInfo = typeof(HairStyleController).GetTypeInfo();
+            var typeInfo = typeof(HairstyleController).GetTypeInfo();
             var attribute = typeInfo.GetCustomAttributes()
                 .FirstOrDefault(a=> a.GetType()
                     .Name.Equals("RouteAttribute")) as RouteAttribute;
@@ -85,7 +85,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void HairStyleController_HasGetAllMethod_ReturnsListOfHairstylesInActionResult()
         {
-            var method = typeof(HairStyleController)
+            var method = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => "GetAll".Equals(m.Name));
             Assert.Equal(typeof(ActionResult<List<Hairstyle>>).FullName, method.ReturnType.FullName);
         }
@@ -93,7 +93,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void GetAll_WithNoParams_HasGetHttpAttribute()
         {
-            var methodInfo = typeof(HairStyleController)
+            var methodInfo = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => m.Name == "GetAll");
             var attr = methodInfo.CustomAttributes
                 .FirstOrDefault(ca => ca.AttributeType.Name == "HttpGetAttribute");
@@ -115,7 +115,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void HairStyleController_HasGetByIdMethod_ReturnsHairstyleInActionResult()
         {
-            var method = typeof(HairStyleController)
+            var method = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => "GetById".Equals(m.Name));
             Assert.Equal(typeof(ActionResult<Hairstyle>).FullName, method.ReturnType.FullName);
         }
@@ -123,7 +123,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void GetById_HasGetHttpAttribute()
         {
-            var methodInfo = typeof(HairStyleController)
+            var methodInfo = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => m.Name == "GetById");
             var attr = methodInfo.CustomAttributes
                 .FirstOrDefault(ca => ca.AttributeType.Name == "HttpGetAttribute");
@@ -145,7 +145,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void HairStyleController_HasDeleteByIdMethod_ReturnsTrueInActionResult()
         {
-            var method = typeof(HairStyleController)
+            var method = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => "DeleteById".Equals(m.Name));
             Assert.Equal(typeof(ActionResult<bool>).FullName, method.ReturnType.FullName);
         }
@@ -153,7 +153,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void DeleteById_HasHttpDeleteAttribute()
         {
-            var methodInfo = typeof(HairStyleController)
+            var methodInfo = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => m.Name == "DeleteById");
             var attr = methodInfo.CustomAttributes
                 .FirstOrDefault(ca => ca.AttributeType.Name == "HttpDeleteAttribute");
@@ -175,7 +175,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void HairStyleController_HasCreateMethod_ReturnsHairstyleInActionResult()
         {
-            var method = typeof(HairStyleController)
+            var method = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => "Create".Equals(m.Name));
             Assert.Equal(typeof(ActionResult<Hairstyle>).FullName, method.ReturnType.FullName);
         }
@@ -183,7 +183,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void Create_HasHttpPostAttribute()
         {
-            var methodInfo = typeof(HairStyleController)
+            var methodInfo = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => m.Name == "Create");
             var attr = methodInfo.CustomAttributes
                 .FirstOrDefault(ca => ca.AttributeType.Name == "HttpPostAttribute");
@@ -206,7 +206,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void HairStyleController_HasUpdateMethod_ReturnsHairstyleInActionResult()
         {
-            var method = typeof(HairStyleController)
+            var method = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => "Update".Equals(m.Name));
             Assert.Equal(typeof(ActionResult<Hairstyle>).FullName, method.ReturnType.FullName);
         }
@@ -214,7 +214,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Test.Controllers
         [Fact]
         public void Update_HasHttpPutAttribute()
         {
-            var methodInfo = typeof(HairStyleController)
+            var methodInfo = typeof(HairstyleController)
                 .GetMethods().FirstOrDefault(m => m.Name == "Update");
             var attr = methodInfo.CustomAttributes
                 .FirstOrDefault(ca => ca.AttributeType.Name == "HttpPutAttribute");

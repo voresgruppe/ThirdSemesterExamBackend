@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
-using voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories;
-using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
 {

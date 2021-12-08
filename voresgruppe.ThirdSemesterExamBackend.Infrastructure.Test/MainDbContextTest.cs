@@ -1,6 +1,5 @@
 using EntityFrameworkCore.Testing.Moq;
 using Microsoft.EntityFrameworkCore;
-using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 using Xunit;

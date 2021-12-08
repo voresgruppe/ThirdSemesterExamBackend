@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace voresgruppe.ThirdSemesterExamBackend.Core.Models
+﻿namespace voresgruppe.ThirdSemesterExamBackend.Core.Models
 {
     public class Customer
     {

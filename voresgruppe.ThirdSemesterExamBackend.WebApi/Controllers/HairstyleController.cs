@@ -8,11 +8,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HairStyleController : ControllerBase
+    public class HairstyleController : ControllerBase
     {
         private readonly IHairStyleService _hairstyleService;
 
-        public HairStyleController(IHairStyleService hairStyleService)
+        public HairstyleController(IHairStyleService hairStyleService)
         {
             if (hairStyleService == null)
             {
@@ -52,6 +52,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
              
             var updatedHairstyle = _hairstyleService.UpdateHairstyle(id, hairstyle);
             return Created($"https://localhost/api/hairstyles/{updatedHairstyle}", updatedHairstyle);
+        }
+
+        [HttpPost(nameof(GetListOfHairstyles_FromListOfId))]
+        public ActionResult<List<Hairstyle>> GetListOfHairstyles_FromListOfId(List<int> possibleStyles)
+        {
+            return _hairstyleService.GetListOfHairstyles_FromListOfId(possibleStyles);
         }
     }
 }

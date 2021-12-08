@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using voresgruppe.ThirdSemesterExamBackend.Core.Models;
+﻿using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
 {
