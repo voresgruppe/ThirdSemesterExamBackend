@@ -14,5 +14,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.IServices
         Hairstyle UpdateHairstyle(int oldHairstyleId, Hairstyle newHairstyle);
 
         public List<Hairstyle> GetListOfHairstyles_FromListOfId(List<int> possibleStyles);
+
+        public List<Hairstyle> GetListOfHairstyles_IsStarterStyle();
     }
 }

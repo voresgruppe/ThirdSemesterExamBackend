@@ -13,5 +13,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Models
         public double Price { get; set; }
 
         public List<int> PossibleStyles { get; set; } = new List<int>();
+        
+        public bool IsStarterHairstyle { get; set; }
     }
 }

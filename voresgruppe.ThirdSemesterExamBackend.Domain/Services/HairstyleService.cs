@@ -51,5 +51,20 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
 
             return hairstyles;
         }
+
+        public List<Hairstyle> GetListOfHairstyles_IsStarterStyle()
+        {
+            List<Hairstyle> hairstyles = new List<Hairstyle>();
+
+            foreach (var hairstyle in _hairstyleRepository.FindAll())
+            {
+                if (hairstyle.IsStarterHairstyle)
+                {
+                    hairstyles.Add(hairstyle);
+                }
+            }
+
+            return hairstyles;
+        }
     }
 }

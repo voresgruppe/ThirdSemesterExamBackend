@@ -59,5 +59,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         {
             return _hairstyleService.GetListOfHairstyles_FromListOfId(possibleStyles);
         }
+            
+        [HttpGet(nameof(GetListOfHairstyles_IsStarterStyle))]
+        public ActionResult<List<Hairstyle>> GetListOfHairstyles_IsStarterStyle()
+        {
+            return _hairstyleService.GetListOfHairstyles_IsStarterStyle();
+        }
     }
 }

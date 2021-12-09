@@ -11,5 +11,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
         
         public string PossibleStyles { get; set; }
         
+        public bool IsStarterHairstyle { get; set; }
+        
     }
 }
