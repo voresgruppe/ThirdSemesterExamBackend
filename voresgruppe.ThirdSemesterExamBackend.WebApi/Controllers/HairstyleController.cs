@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
@@ -46,12 +47,12 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
             var createdHairstyle = _hairstyleService.CreateHairstyle(hairstyle);
             return Created($"https://localhost/api/hairstyles/{createdHairstyle}", createdHairstyle);
         }
-        [HttpPut]
+        [HttpPut(nameof(Update))]
         public ActionResult<Hairstyle> Update(int id, Hairstyle hairstyle)
         {
-             
+             Console.WriteLine(hairstyle.PossibleStyles);
             var updatedHairstyle = _hairstyleService.UpdateHairstyle(id, hairstyle);
-            return Created($"https://localhost/api/hairstyles/{updatedHairstyle}", updatedHairstyle);
+            return updatedHairstyle;
         }
 
         [HttpPost(nameof(GetListOfHairstyles_FromListOfId))]
