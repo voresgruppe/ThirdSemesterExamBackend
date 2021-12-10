@@ -14,6 +14,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
                 CustomerId = entity.CustomerId,
                 AppointmentTime = entity.AppointmentTime.ToString(),
                 EmployeeId = entity.EmployeeId,
+                HairstyleStarterId = entity.HairstyleStarterId,
+                HairstyleEndId = entity.HairstyleEndId,
             };
 
             return appointment;
@@ -27,6 +29,8 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
                 CustomerId = appointment.CustomerId,
                 AppointmentTime = DateTime.Parse(appointment.AppointmentTime),
                 EmployeeId = appointment.EmployeeId,
+                HairstyleStarterId = appointment.HairstyleStarterId,
+                HairstyleEndId = appointment.HairstyleEndId,
             };
         }
     }
