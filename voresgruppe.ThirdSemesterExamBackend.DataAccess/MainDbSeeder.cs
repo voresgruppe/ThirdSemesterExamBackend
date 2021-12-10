@@ -58,9 +58,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 
         void AddMockData_Appointment()
         {
-            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today, CustomerId = 1, EmployeeId = 2});
-            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(-1), CustomerId = 1, EmployeeId = 1});
-            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 2, EmployeeId = 1});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today, CustomerId = 1, EmployeeId = 2, HairstyleStarterId = 1, HairstyleEndId = 2});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(-1), CustomerId = 1, EmployeeId = 1, HairstyleStarterId = 4, HairstyleEndId = 1});
+            _ctx.Appointment.Add(new AppointmentEntity() {AppointmentTime = DateTime.Today.AddDays(1), CustomerId = 2, EmployeeId = 1, HairstyleStarterId = 4, HairstyleEndId = 2});
             _ctx.SaveChanges();
         }
     }

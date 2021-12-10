@@ -10,6 +10,9 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Models
         
         public int EmployeeId { get; set; }
         
+        public int HairstyleStarterId { get; set; }
+        
+        public int HairstyleEndId { get; set; }
         //public Customer Customer { get; set; }
         public String AppointmentTime { get; set; }
     }
