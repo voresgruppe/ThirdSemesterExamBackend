@@ -17,6 +17,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
                 Price = entity.Price,
                 PossibleStyles = StringToListInt(entity.PossibleStyles),
                 IsStarterHairstyle = entity.IsStarterHairstyle,
+                PathToImage = entity.PathToImage,
             };
 
             return hairstyle;
@@ -32,6 +33,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
                 Price = hairstyle.Price,
                 PossibleStyles = ListIntToString(hairstyle.PossibleStyles),
                 IsStarterHairstyle = hairstyle.IsStarterHairstyle,
+                PathToImage = hairstyle.PathToImage,
             };
         }
 
@@ -43,6 +45,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
             old.Price = updated.Price;
             old.PossibleStyles = ListIntToString(updated.PossibleStyles);
             old.IsStarterHairstyle = updated.IsStarterHairstyle;
+            old.PathToImage = updated.PathToImage;
             return old;
         }
 

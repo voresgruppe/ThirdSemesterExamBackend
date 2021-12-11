@@ -15,5 +15,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Core.Models
         public List<int> PossibleStyles { get; set; } = new List<int>();
         
         public bool IsStarterHairstyle { get; set; }
+        
+        public string PathToImage { get; set; }
     }
 }

@@ -56,10 +56,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
 
         void addMockData_Hairstyle()
         {
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "kort", EstimatedTime = 40, Description = "det mindre langt", Price = 3, PossibleStyles = "2", IsStarterHairstyle = true});
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "spidser", EstimatedTime = 50, Description = "det blir nogenlunde lige", Price = 45, PossibleStyles = "1", IsStarterHairstyle = false});
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "gryde", EstimatedTime = 35, Description = "bedre end pandehår", Price = 20, PossibleStyles = "1", IsStarterHairstyle = true});
-            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "skulderlangt", EstimatedTime = 35, Description = "ca samme længde som fra din hovedbund til dine skuldre", Price = 0, PossibleStyles = "1,2,3", IsStarterHairstyle = true});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "kort", EstimatedTime = 40, Description = "det mindre langt", Price = 3, PossibleStyles = "2", IsStarterHairstyle = true, PathToImage = "../../../../assets/Test.JPG"});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "spidser", EstimatedTime = 50, Description = "det blir nogenlunde lige", Price = 45, PossibleStyles = "1", IsStarterHairstyle = false, PathToImage = "../../../../assets/Test.JPG"});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "gryde", EstimatedTime = 35, Description = "bedre end pandehår", Price = 20, PossibleStyles = "1", IsStarterHairstyle = true, PathToImage = "../../../../assets/Test.JPG"});
+            _ctx.Hairstyles.Add(new HairstyleEntity(){Name = "skulderlangt", EstimatedTime = 35, Description = "ca samme længde som fra din hovedbund til dine skuldre", Price = 0, PossibleStyles = "1,2,3", IsStarterHairstyle = true, PathToImage = "../../../../assets/Test.JPG"});
             _ctx.SaveChanges();
         }
 

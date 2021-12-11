@@ -13,5 +13,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities
         
         public bool IsStarterHairstyle { get; set; }
         
+        public string PathToImage { get; set; }
+        
     }
 }
