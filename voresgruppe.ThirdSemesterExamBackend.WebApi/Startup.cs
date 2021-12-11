@@ -135,6 +135,13 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
+                options.AddPolicy("Prod-cors", policy =>
+                {
+                    policy.WithOrigins("https://thirdsemesterexam-d35a1.firebaseapp.com",
+                            "thirdsemesterexam-d35a1.web.app")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
             });
             
             
@@ -156,6 +163,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
             }
             else
             {
+                app.UseCors("Prod-cors");
                 mainDbSeeder.SeedProduction();
             }
 

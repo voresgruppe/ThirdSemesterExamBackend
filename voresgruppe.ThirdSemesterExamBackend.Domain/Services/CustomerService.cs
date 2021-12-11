@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using voresgruppe.ThirdSemesterExamBackend.Core.IServices;
 using voresgruppe.ThirdSemesterExamBackend.Core.Models;
 using voresgruppe.ThirdSemesterExamBackend.Domain.IRepositories;
@@ -76,6 +78,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
 
         private string CheckIfStringIsNumberAndAddSpaceEveryTwoNumbers(string nr)
         {
+            nr = nr.Replace(" ", string.Empty);
             ulong num;
             bool isNumber = ulong.TryParse(nr, out num);
             string realNumber = num.ToString();

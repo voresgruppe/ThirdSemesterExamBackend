@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities;
 
 namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
@@ -26,6 +27,29 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         public void SeedProduction()
         {
             _ctx.Database.EnsureCreated();
+            var hairstylesCount = _ctx.Hairstyles.Count();
+            if (hairstylesCount == 0)
+            {
+                addMockData_Hairstyle();
+            }
+            
+            var customerCount = _ctx.Customer.Count();
+            if (customerCount == 0)
+            {
+                AddMockData_Customer();
+            }
+            
+            var appointmentCount = _ctx.Appointment.Count();
+            if (appointmentCount == 0)
+            {
+                AddMockData_Appointment();
+            }
+            
+            var employeeCount = _ctx.Employee.Count();
+            if (employeeCount == 0)
+            {
+                AddMockData_employees();
+            }
         }
 
         void addMockData_Hairstyle()
