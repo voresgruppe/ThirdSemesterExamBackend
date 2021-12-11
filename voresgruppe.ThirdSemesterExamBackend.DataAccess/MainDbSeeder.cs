@@ -39,16 +39,16 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
                 AddMockData_Customer();
             }
             
-            int appointmentCount = _ctx.Appointment.Count();
-            if (appointmentCount == 0)
-            {
-                AddMockData_Appointment();
-            }
-            
             int employeeCount = _ctx.Employee.Count();
             if (employeeCount == 0)
             {
                 AddMockData_employees();
+            }
+            
+            int appointmentCount = _ctx.Appointment.Count();
+            if (appointmentCount == 0)
+            {
+                AddMockData_Appointment();
             }
 
             _ctx.SaveChanges();
