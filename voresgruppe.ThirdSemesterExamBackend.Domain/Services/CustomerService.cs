@@ -56,6 +56,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
         private string CheckValidPhoneNumber(string phone)
         {
             string nr = phone.Trim();
+            nr = nr.Replace(" ", string.Empty);
             string finalNr = "";
             if (nr.StartsWith("00"))
             {
@@ -78,7 +79,6 @@ namespace voresgruppe.ThirdSemesterExamBackend.Domain.Services
 
         private string CheckIfStringIsNumberAndAddSpaceEveryTwoNumbers(string nr)
         {
-            nr = nr.Replace(" ", string.Empty);
             ulong num;
             bool isNumber = ulong.TryParse(nr, out num);
             string realNumber = num.ToString();
