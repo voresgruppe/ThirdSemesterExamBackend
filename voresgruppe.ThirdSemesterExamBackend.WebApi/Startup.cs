@@ -138,7 +138,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 options.AddPolicy("Prod-cors", policy =>
                 {
                     policy.WithOrigins("https://thirdsemesterexam-d35a1.firebaseapp.com",
-                            "thirdsemesterexam-d35a1.web.app")
+                            "https://thirdsemesterexam-d35a1.web.app")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
