@@ -154,6 +154,10 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi
                 mainDbSeeder.SeedDevelopment();
                 authDbSeeder.SeedDevelopment();
             }
+            else
+            {
+                mainDbSeeder.SeedProduction();
+            }
 
             app.UseHttpsRedirection();
 
