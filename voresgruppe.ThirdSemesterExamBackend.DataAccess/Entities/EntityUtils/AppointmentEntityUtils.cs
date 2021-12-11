@@ -33,5 +33,15 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Entities.EntityUtils
                 HairstyleEndId = appointment.HairstyleEndId,
             };
         }
+        
+        public AppointmentEntity UpdateAppointment(AppointmentEntity old, Appointment updated)
+        {
+            old.CustomerId = updated.CustomerId;
+            old.AppointmentTime = DateTime.Parse(updated.AppointmentTime);
+            old.EmployeeId = updated.EmployeeId;
+            old.HairstyleEndId = updated.HairstyleEndId;
+            old.HairstyleStarterId= updated.HairstyleStarterId;
+            return old;
+        }
     }
 }

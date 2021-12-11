@@ -68,12 +68,11 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess.Repositories
 
         public Appointment UpdateAppointment(int id, Appointment app)
         {
-            AppointmentEntity ae = _ctx.Appointment.Find(id);
-            ae.AppointmentTime = DateTime.Parse(app.AppointmentTime);
-            ae.CustomerId = app.CustomerId;
-            AppointmentEntity returnEntity = _ctx.Appointment.Update(ae).Entity;
+            AppointmentEntity old = _ctx.Appointment.Find(id);
+            
+            AppointmentEntity entity =_ctx.Appointment.Update(_appointmentEntityUtils.UpdateAppointment(old, app)).Entity;
             _ctx.SaveChanges();
-            return _appointmentEntityUtils.EntityToAppointment(returnEntity);
+            return _appointmentEntityUtils.EntityToAppointment(entity);
         }
     }
 }
