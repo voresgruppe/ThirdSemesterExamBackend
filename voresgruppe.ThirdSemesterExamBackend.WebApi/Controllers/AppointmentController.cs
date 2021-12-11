@@ -59,13 +59,7 @@ namespace voresgruppe.ThirdSemesterExamBackend.WebApi.Controllers
         [HttpPut]
         public ActionResult<Appointment> UpdateAppointment(int id, Appointment appointment)
         {
-            var app = new Appointment()
-            {
-                AppointmentTime = appointment.AppointmentTime,
-                CustomerId = appointment.Id,
-                EmployeeId = appointment.EmployeeId,
-            };
-            Appointment updateAppointment = _appointmentService.UpdateAppointment(id, app);
+            Appointment updateAppointment = _appointmentService.UpdateAppointment(id, appointment);
             return Created($"https://localhost/api/products/{updateAppointment}", updateAppointment);
         }
     }
