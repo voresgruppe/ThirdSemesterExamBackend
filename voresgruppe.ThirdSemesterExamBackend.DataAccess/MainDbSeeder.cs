@@ -27,29 +27,31 @@ namespace voresgruppe.ThirdSemesterExamBackend.DataAccess
         public void SeedProduction()
         {
             _ctx.Database.EnsureCreated();
-            var hairstylesCount = _ctx.Hairstyles.Count();
+            int hairstylesCount = _ctx.Hairstyles.Count();
             if (hairstylesCount == 0)
             {
                 addMockData_Hairstyle();
             }
             
-            var customerCount = _ctx.Customer.Count();
+            int customerCount = _ctx.Customer.Count();
             if (customerCount == 0)
             {
                 AddMockData_Customer();
             }
             
-            var appointmentCount = _ctx.Appointment.Count();
+            int appointmentCount = _ctx.Appointment.Count();
             if (appointmentCount == 0)
             {
                 AddMockData_Appointment();
             }
             
-            var employeeCount = _ctx.Employee.Count();
+            int employeeCount = _ctx.Employee.Count();
             if (employeeCount == 0)
             {
                 AddMockData_employees();
             }
+
+            _ctx.SaveChanges();
         }
 
         void addMockData_Hairstyle()
